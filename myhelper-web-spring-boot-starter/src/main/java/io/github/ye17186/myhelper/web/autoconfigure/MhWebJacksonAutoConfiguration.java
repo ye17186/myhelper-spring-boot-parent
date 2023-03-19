@@ -1,4 +1,4 @@
-package io.github.ye17186.myhelper.core.autoconfigure;
+package io.github.ye17186.myhelper.web.autoconfigure;
 
 import io.github.ye17186.myhelper.core.jackson.ObjectMappers;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -13,7 +13,7 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
  * @since 2022-10-13
  */
 @AutoConfiguration(before = JacksonAutoConfiguration.class)
-public class MhJacksonAutoConfiguration {
+public class MhWebJacksonAutoConfiguration {
 
     @Bean
     public Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder() {

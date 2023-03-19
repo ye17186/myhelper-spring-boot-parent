@@ -1,7 +1,7 @@
-package io.github.ye17186.myhelper.core.autoconfigure;
+package io.github.ye17186.myhelper.web.autoconfigure;
 
 import io.github.ye17186.myhelper.core.async.ThreadPoolTaskExecutorWrapper;
-import io.github.ye17186.myhelper.core.autoconfigure.properties.MyHelperAsyncProperties;
+import io.github.ye17186.myhelper.web.autoconfigure.properties.MhWebAsyncProperties;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
@@ -12,12 +12,12 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
  * @since 2023-02-09
  */
 @AutoConfiguration
-@EnableConfigurationProperties(MyHelperAsyncProperties.class)
-public class MhAsyncAutoConfiguration implements AsyncConfigurer {
+@EnableConfigurationProperties(MhWebAsyncProperties.class)
+public class MhWebAsyncAutoConfiguration implements AsyncConfigurer {
 
-    private final MyHelperAsyncProperties properties;
+    private final MhWebAsyncProperties properties;
 
-    public MhAsyncAutoConfiguration(MyHelperAsyncProperties properties) {
+    public MhWebAsyncAutoConfiguration(MhWebAsyncProperties properties) {
         this.properties = properties;
     }
 

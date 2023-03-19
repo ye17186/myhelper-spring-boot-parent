@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @RestControllerAdvice
-public class MhExceptionHandlerAdvice extends MhSaExceptionHandler{
+public class MhWebExceptionHandler extends MhSaExceptionHandler {
 
     @ExceptionHandler(BizException.class)
     protected ApiResp<String> handleLogicException(HttpServletRequest request, BizException ex) {

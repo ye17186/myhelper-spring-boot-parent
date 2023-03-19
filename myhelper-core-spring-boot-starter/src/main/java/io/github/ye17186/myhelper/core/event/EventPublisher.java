@@ -1,6 +1,5 @@
 package io.github.ye17186.myhelper.core.event;
 
-import io.github.ye17186.myhelper.core.autoconfigure.properties.MyHelperCoreProperties;
 import io.github.ye17186.myhelper.core.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
@@ -17,13 +16,11 @@ import org.springframework.lang.NonNull;
 public class EventPublisher implements ApplicationEventPublisher {
 
     private final ApplicationContext context;
-    private final MyHelperCoreProperties properties;
     private final boolean delayEventEnable;
 
-    public EventPublisher(ApplicationContext context, MyHelperCoreProperties properties) {
+    public EventPublisher(ApplicationContext context, boolean delayEventEnable) {
         this.context = context;
-        this.properties = properties;
-        this.delayEventEnable = properties.getDelayEvent().getEnabled();
+        this.delayEventEnable = delayEventEnable;
     }
 
     /**
