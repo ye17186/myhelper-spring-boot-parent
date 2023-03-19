@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ye186.thirdparty</groupId>
+        <artifactId>myhelper-spring-boot-parent</artifactId>
+        <version>1.0.0</version>
+    </parent>
+    <artifactId>myhelper-knife4j-spring-boot-starter</artifactId>
+    <version>1.0.0</version>
+    <properties>
+        <springdoc-openapi-ui.version>1.6.9</springdoc-openapi-ui.version>
+        <knife4j.version>4.0.0</knife4j.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${springdoc-openapi-ui.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi3-spring-boot-starter</artifactId>
+            <version>${knife4j.version}</version>
+        </dependency>
+    </dependencies>
+
+
+</project>

@@ -1,0 +1,40 @@
+package com.ye186.thirdparty.myhelper.web.annotation;
+
+import com.ye186.thirdparty.myhelper.web.aspect.log.LogTarget;
+
+import java.lang.annotation.*;
+
+/**
+ * @author ye17186
+ * @date 2022-09-30
+ */
+@Target({ElementType.TYPE, ElementType.METHOD})
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+public @interface SysLogPoint {
+
+    /**
+     * 操作名
+     */
+    String action() default "unknown";
+
+    /**
+     * 是否忽略输入
+     */
+    boolean ignoreInput() default false;
+
+    /**
+     * 是否忽略输出
+     */
+    boolean ignoreOutput() default false;
+
+    /**
+     * 敏感参数
+     */
+    String[] sensitiveParams() default {};
+
+    /**
+     * 目标类型：CONTROLLER：controller日志, SERVICE：service日志, Mapper：dao日志, METHOD：普通方法日志
+     */
+    LogTarget target() default LogTarget.CONTROLLER;
+}

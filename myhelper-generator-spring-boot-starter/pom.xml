@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>myhelper-spring-boot-parent</artifactId>
+        <groupId>com.ye186.thirdparty</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>myhelper-generator-spring-boot-starter</artifactId>
+
+    <properties>
+        <mybatis-plus-generator.version>3.5.3</mybatis-plus-generator.version>
+        <freemarker.version>2.3.31</freemarker.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.ye186.thirdparty</groupId>
+            <artifactId>myhelper-mybatis-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>${mybatis-plus-generator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>${freemarker.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

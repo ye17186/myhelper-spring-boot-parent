@@ -1,0 +1,81 @@
+package com.ye186.thirdparty.myhelper.web.filter;
+
+import com.ye186.thirdparty.myhelper.core.utils.IdUtils;
+import com.ye186.thirdparty.myhelper.core.utils.JsonUtils;
+import com.ye186.thirdparty.myhelper.core.web.context.RequestContext;
+import com.ye186.thirdparty.myhelper.core.web.context.RequestInfo;
+import com.ye186.thirdparty.myhelper.web.utils.RequestUtils;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.lang.NonNull;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.time.Duration;
+import java.time.LocalDateTime;
+
+/**
+ * 请求上下文过滤器
+ *
+ * @author ye17186
+ * @date 2022-10-12
+ */
+@Slf4j
+public class MhRequestContextFilter extends OncePerRequestFilter {
+
+    private final RequestLogService logService;
+
+    public MhRequestContextFilter(RequestLogService service) {
+        this.logService = service;
+    }
+
+    @Override
+    protected void doFilterInternal(@NonNull HttpServletRequest request,
+                                    @NonNull HttpServletResponse response,
+                                    @NonNull FilterChain filterChain) throws ServletException, IOException {
+
+        RequestInfo info = initRequest(request);
+        RequestContext.set(info);
+        try {
+            filterChain.doFilter(request, response);
+        } finally {
+            info.setResponseTime(LocalDateTime.now());
+            info.setDuration(Duration.between(info.getRequestTime(), info.getResponseTime()).toMillis());
+            if (careUri(request.getRequestURI())) {
+                if (logService != null) {
+                    logService.handle(info);
+                }
+                log.info("【=== My-Helper ===】HTTP请求完成。{}", JsonUtils.obj2Json(info));
+            }
+            RequestContext.remove();
+        }
+    }
+
+    /**
+     * 初始化请求
+     *
+     * @param servletRequest http请求
+     */
+    public RequestInfo initRequest(ServletRequest servletRequest) {
+
+        HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
+        RequestInfo request = new RequestInfo();
+        request.setRequestId(IdUtils.uuid());
+        request.setRequestTime(LocalDateTime.now());
+        request.setClientIp(RequestUtils.getClientIp(httpRequest));
+        request.setHttpMethod(httpRequest.getMethod());
+        request.setHttpUri(httpRequest.getRequestURI());
+        return request;
+    }
+
+    private boolean careUri(String uri) {
+
+        return !(uri.startsWith("/swagger")
+                || uri.startsWith("/webjars")
+                || uri.startsWith("/v3/api-docs"));
+    }
+}

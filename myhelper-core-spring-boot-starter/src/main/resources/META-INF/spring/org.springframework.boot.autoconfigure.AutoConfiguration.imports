@@ -1,0 +1,3 @@
+com.ye186.thirdparty.myhelper.core.autoconfigure.MhCoreAutoConfiguration
+com.ye186.thirdparty.myhelper.core.autoconfigure.MhJacksonAutoConfiguration
+com.ye186.thirdparty.myhelper.core.autoconfigure.MhAsyncAutoConfiguration
