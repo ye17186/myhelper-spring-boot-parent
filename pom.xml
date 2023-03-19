@@ -10,7 +10,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.ye186.myhelper</groupId>
+    <groupId>io.github.ye17186</groupId>
     <artifactId>myhelper-spring-boot-parent</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
@@ -56,42 +56,42 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.ye186.myhelper</groupId>
+                <groupId>io.github.ye17186</groupId>
                 <artifactId>myhelper-caffeine-spring-boot-starter</artifactId>
                 <version>${my-helper.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.ye186.myhelper</groupId>
+                <groupId>io.github.ye17186</groupId>
                 <artifactId>myhelper-core-spring-boot-starter</artifactId>
                 <version>${my-helper.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.ye186.myhelper</groupId>
+                <groupId>io.github.ye17186</groupId>
                 <artifactId>myhelper-generator-spring-boot-starter</artifactId>
                 <version>${my-helper.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.ye186.myhelper</groupId>
+                <groupId>io.github.ye17186</groupId>
                 <artifactId>myhelper-knife4j-spring-boot-starter</artifactId>
                 <version>${my-helper.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.ye186.myhelper</groupId>
+                <groupId>io.github.ye17186</groupId>
                 <artifactId>myhelper-mybatis-spring-boot-starter</artifactId>
                 <version>${my-helper.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.ye186.myhelper</groupId>
+                <groupId>io.github.ye17186</groupId>
                 <artifactId>myhelper-token-spring-boot-starter</artifactId>
                 <version>${my-helper.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.ye186.myhelper</groupId>
+                <groupId>io.github.ye17186</groupId>
                 <artifactId>myhelper-web-spring-boot-starter</artifactId>
                 <version>${my-helper.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.ye186.myhelper</groupId>
+                <groupId>io.github.ye17186</groupId>
                 <artifactId>myhelper-minio-spring-boot-starter</artifactId>
                 <version>${my-helper.version}</version>
             </dependency>
