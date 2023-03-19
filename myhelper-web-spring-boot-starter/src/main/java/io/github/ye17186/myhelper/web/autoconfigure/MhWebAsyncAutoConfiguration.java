@@ -1,9 +1,9 @@
 package io.github.ye17186.myhelper.web.autoconfigure;
 
 import io.github.ye17186.myhelper.core.async.ThreadPoolTaskExecutorWrapper;
-import io.github.ye17186.myhelper.web.autoconfigure.properties.MhWebAsyncProperties;
+import io.github.ye17186.myhelper.web.autoconfigure.properties.MhWebProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
@@ -12,22 +12,18 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
  * @since 2023-02-09
  */
 @AutoConfiguration
-@EnableConfigurationProperties(MhWebAsyncProperties.class)
 public class MhWebAsyncAutoConfiguration implements AsyncConfigurer {
 
-    private final MhWebAsyncProperties properties;
-
-    public MhWebAsyncAutoConfiguration(MhWebAsyncProperties properties) {
-        this.properties = properties;
-    }
+    @Autowired
+    private MhWebProperties properties;
 
     @Override
     public ThreadPoolTaskExecutor getAsyncExecutor() {
 
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(properties.getCorePoolSize());
-        executor.setMaxPoolSize(properties.getMaxPoolSize());
-        executor.setThreadNamePrefix(properties.getThreadNamePrefix());
+        executor.setCorePoolSize(properties.getAsync().getCorePoolSize());
+        executor.setMaxPoolSize(properties.getAsync().getMaxPoolSize());
+        executor.setThreadNamePrefix(properties.getAsync().getThreadNamePrefix());
         executor.initialize();
 
         return ThreadPoolTaskExecutorWrapper.wrap(executor);

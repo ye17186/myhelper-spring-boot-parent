@@ -26,7 +26,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
         MhWebCorsAutoConfiguration.class,
         MhWebExceptionHandler.class,
         MhWebLoginInterceptorAutoConfiguration.class,
-        MhWebJacksonAutoConfiguration.class})
+        MhWebAsyncAutoConfiguration.class})
 @EnableConfigurationProperties(MhWebProperties.class)
 public class MhWebAutoConfiguration {
 

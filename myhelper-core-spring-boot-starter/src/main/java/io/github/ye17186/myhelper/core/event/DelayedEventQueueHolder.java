@@ -29,7 +29,6 @@ public class DelayedEventQueueHolder implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
 
         Asserts.notNull(executor, "异步任务执行器异常");
-
         executor.submit(() -> {
             log.info("【DelayedEventQueueHolder】启动延时事件存储队列，开始监听延时事件。");
             while (true) {
