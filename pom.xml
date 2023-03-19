@@ -67,11 +67,6 @@
             </dependency>
             <dependency>
                 <groupId>com.ye186.thirdparty</groupId>
-                <artifactId>myhelper-demo-spring-boot-starter</artifactId>
-                <version>${my-helper.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.ye186.thirdparty</groupId>
                 <artifactId>myhelper-generator-spring-boot-starter</artifactId>
                 <version>${my-helper.version}</version>
             </dependency>
