@@ -5,11 +5,10 @@
     <parent>
         <groupId>io.github.ye17186</groupId>
         <artifactId>myhelper-spring-boot-parent</artifactId>
-        <version>1.0.0</version>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>myhelper-mybatis-spring-boot-starter</artifactId>
-    <version>1.0.0</version>
 
     <properties>
         <mybatis-plus.version>3.5.3</mybatis-plus.version>
@@ -27,6 +26,4 @@
             <version>${mybatis-plus.version}</version>
         </dependency>
     </dependencies>
-
-
 </project>
