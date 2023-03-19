@@ -14,15 +14,15 @@ public class MhWebAsyncProperties {
     /**
      * 线程名前缀
      */
-    private String threadNamePrefix = "mh-task-pool-";
+    private String namePrefix = "mh-task-pool-";
 
     /**
      * 核心线程数
      */
-    private int corePoolSize = 10;
+    private int coreSize = 10;
 
     /**
      * 最大线程数
      */
-    private int maxPoolSize = 50;
+    private int maxSize = 50;
 }

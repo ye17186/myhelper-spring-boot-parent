@@ -29,7 +29,7 @@ public class MhWebProperties {
     /**
      * 异步线程
      */
-    private MhWebAsyncProperties async = new MhWebAsyncProperties();
+    private MhWebAsyncProperties threadPool = new MhWebAsyncProperties();
 
     /**
      * 登录拦截器
