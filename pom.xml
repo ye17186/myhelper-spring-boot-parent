@@ -6,9 +6,30 @@
 
     <groupId>io.github.ye17186</groupId>
     <artifactId>myhelper-spring-boot-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <packaging>pom</packaging>
     <name>myhelper-spring-boot-parent</name>
+    <description>a web application starters</description>
+
+    <url>https://www.ye186.top</url>
+    <scm>
+        <tag>master</tag>
+        <url>https://github.com/ye17186/myhelper-spring-boot-parent</url>
+    </scm>
+    <developers>
+        <developer>
+            <id>ye17186</id>
+            <name>yemeng</name>
+            <email>ye17186@163.com</email>
+            <url>https://github.com/ye17186</url>
+        </developer>
+    </developers>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://github.com/ye17186/myhelper-spring-boot-parent/blob/master/LICENSE</url>
+        </license>
+    </licenses>
 
     <modules>
         <module>myhelper-caffeine-spring-boot-starter</module>
@@ -30,8 +51,9 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
+        <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
 
-        <my-helper.version>0.0.1-SNAPSHOT</my-helper.version>
+        <my-helper.version>0.0.1</my-helper.version>
 
         <!--    冲突管理    -->
         <checker-qual.version>3.19.0</checker-qual.version>
@@ -127,7 +149,7 @@
 
     <profiles>
         <profile>
-            <id>release</id>
+            <id>ossrh-release</id>
             <build>
                 <plugins>
                     <plugin>
@@ -156,6 +178,20 @@
                                 <configuration>
                                     <doclint>none</doclint>
                                 </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${maven-gpg-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
                             </execution>
                         </executions>
                     </plugin>
