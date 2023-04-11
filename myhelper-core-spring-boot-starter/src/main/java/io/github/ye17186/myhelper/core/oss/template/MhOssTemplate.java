@@ -23,6 +23,16 @@ public interface MhOssTemplate {
     OssPutResult putObj(String bucket, String objKey, InputStream stream);
 
     /**
+     * 存入对象
+     *
+     * @param bucket 桶
+     * @param objKey key
+     * @param stream 文件流
+     * @param contentType type
+     */
+    OssPutResult putObj(String bucket, String objKey, InputStream stream, String contentType);
+
+    /**
      * 获取永久URL
      * 注意：此方法必须提前将bucket设置为public
      *

@@ -38,13 +38,19 @@ public class MhMinioService implements MhOssTemplate {
     @Override
     public OssPutResult putObj(String bucket, String objKey, InputStream stream) {
 
+        return putObj(bucket, objKey, stream, MediaType.APPLICATION_OCTET_STREAM_VALUE);
+    }
+
+    @Override
+    public OssPutResult putObj(String bucket, String objKey, InputStream stream, String contentType) {
+
         OssPutResult result = new OssPutResult(bucket, objKey);
         long start = System.currentTimeMillis();
         try {
             log.info("[My-Helper][Minio] 上传文件到Minio开始。bucket：{}，objKey:{}", bucket, objKey);
             PutObjectArgs args = PutObjectArgs.builder().bucket(bucket).object(objKey)
                     .stream(stream, stream.available(), -1)
-                    .contentType(MediaType.APPLICATION_OCTET_STREAM_VALUE).build();
+                    .contentType(contentType).build();
             client.putObject(args);
         } catch (Exception e) {
             log.info("[My-Helper][Minio] 上传文件异常。", e);

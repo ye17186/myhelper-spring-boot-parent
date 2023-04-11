@@ -2,12 +2,14 @@ package io.github.ye17186.myhelper.oss;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
+import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import io.github.ye17186.myhelper.core.utils.JsonUtils;
 import io.github.ye17186.myhelper.core.oss.result.OssPutResult;
 import io.github.ye17186.myhelper.core.oss.result.OssUrlResult;
 import io.github.ye17186.myhelper.core.oss.template.MhOssTemplate;
+import io.github.ye17186.myhelper.core.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -38,12 +40,21 @@ public class MhAwsService implements MhOssTemplate {
     @Override
     public OssPutResult putObj(String bucket, String objKey, InputStream stream) {
 
+        return putObj(bucket, objKey, stream, MediaType.APPLICATION_OCTET_STREAM_VALUE);
+    }
+
+    @Override
+    public OssPutResult putObj(String bucket, String objKey, InputStream stream, String contentType) {
+
         OssPutResult result = new OssPutResult(bucket, objKey);
         long start = System.currentTimeMillis();
         try {
             log.info("[My-Helper][OSS] 上传文件到Minio开始。bucket：{}，objKey:{}", bucket, objKey);
 
-            PutObjectRequest request = new PutObjectRequest(bucket, objKey, stream, null);
+            ObjectMetadata metadata = new ObjectMetadata();
+            metadata.setContentLength(stream.available());
+            metadata.setContentType(contentType);
+            PutObjectRequest request = new PutObjectRequest(bucket, objKey, stream, metadata);
             client.putObject(request);
         } catch (Exception e) {
             log.info("[My-Helper][OSS] 上传文件异常。", e);
