@@ -6,7 +6,7 @@ import io.github.ye17186.myhelper.core.oss.result.OssUrlResult;
 import java.io.InputStream;
 
 /**
- * @author yemeng20
+ * @author ye17186
  * @date 2023-04-11
  */
 public interface MhOssTemplate {

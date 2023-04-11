@@ -128,6 +128,11 @@
                 <artifactId>myhelper-minio-spring-boot-starter</artifactId>
                 <version>${my-helper.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.github.ye17186</groupId>
+                <artifactId>myhelper-oss-spring-boot-starter</artifactId>
+                <version>${my-helper.version}</version>
+            </dependency>
 
             <!--     冲突管理       -->
             <dependency>

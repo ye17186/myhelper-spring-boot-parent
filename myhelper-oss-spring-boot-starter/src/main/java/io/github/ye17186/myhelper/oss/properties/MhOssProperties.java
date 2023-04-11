@@ -14,7 +14,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "spring.my-helper.oss")
 public class MhOssProperties {
 
-    private OssType type = OssType.ASW;
+    private OssType type = OssType.AWS;
 
     /**
      * endpoint
