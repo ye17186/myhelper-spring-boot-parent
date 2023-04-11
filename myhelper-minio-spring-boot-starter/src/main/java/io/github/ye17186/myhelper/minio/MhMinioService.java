@@ -1,8 +1,9 @@
 package io.github.ye17186.myhelper.minio;
 
+import io.github.ye17186.myhelper.core.oss.result.OssPutResult;
+import io.github.ye17186.myhelper.core.oss.result.OssUrlResult;
+import io.github.ye17186.myhelper.core.oss.template.MhOssTemplate;
 import io.github.ye17186.myhelper.core.utils.JsonUtils;
-import io.github.ye17186.myhelper.minio.result.MinioPutResult;
-import io.github.ye17186.myhelper.minio.result.MinioUrlResult;
 import io.minio.GetPresignedObjectUrlArgs;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
@@ -20,7 +21,7 @@ import java.time.LocalDateTime;
  * @since 2023-02-15
  */
 @Slf4j
-public class MhMinioService {
+public class MhMinioService implements MhOssTemplate {
 
     private final MinioClient client;
 
@@ -28,16 +29,16 @@ public class MhMinioService {
         this.client = client;
     }
 
-    /**
-     * 存入对象
-     *
-     * @param bucket 桶
-     * @param objKey key
-     * @param stream 文件流
-     */
-    public MinioPutResult putObj(String bucket, String objKey, InputStream stream) {
+    @Override
+    public MinioClient getClient() {
 
-        MinioPutResult result = new MinioPutResult(bucket, objKey);
+        return this.client;
+    }
+
+    @Override
+    public OssPutResult putObj(String bucket, String objKey, InputStream stream) {
+
+        OssPutResult result = new OssPutResult(bucket, objKey);
         long start = System.currentTimeMillis();
         try {
             log.info("[My-Helper][Minio] 上传文件到Minio开始。bucket：{}，objKey:{}", bucket, objKey);
@@ -55,16 +56,10 @@ public class MhMinioService {
         return result;
     }
 
-    /**
-     * 获取永久URL
-     * 注意：此方法必须提前将bucket设置为public
-     *
-     * @param bucket 桶
-     * @param objKey 对象key
-     */
-    public MinioUrlResult getUrl(String bucket, String objKey) {
+    @Override
+    public OssUrlResult getUrl(String bucket, String objKey) {
 
-        MinioUrlResult result = new MinioUrlResult(bucket, objKey);
+        OssUrlResult result = new OssUrlResult(bucket, objKey);
         long start = System.currentTimeMillis();
         try {
             // 注意：minio最大值支持7天，如果需要获取永久链接，必须将bucket设置为public
@@ -82,16 +77,10 @@ public class MhMinioService {
         return result;
     }
 
-    /**
-     * 获取签名URL
-     *
-     * @param bucket 桶
-     * @param objKey 文件key
-     * @param expire 有效时间，单位秒，minio最大支持7天
-     */
-    public MinioUrlResult getUrl(String bucket, String objKey, int expire) {
+    @Override
+    public OssUrlResult getUrl(String bucket, String objKey, int expire) {
 
-        MinioUrlResult result = new MinioUrlResult(bucket, objKey);
+        OssUrlResult result = new OssUrlResult(bucket, objKey);
         long start = System.currentTimeMillis();
         try {
             // 注意：minio最大值支持7天

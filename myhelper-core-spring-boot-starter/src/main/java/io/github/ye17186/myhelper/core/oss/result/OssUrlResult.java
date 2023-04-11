@@ -1,4 +1,4 @@
-package io.github.ye17186.myhelper.minio.result;
+package io.github.ye17186.myhelper.core.oss.result;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
  */
 @Setter
 @Getter
-public class MinioUrlResult extends MinioResult {
+public class OssUrlResult extends OssResult {
 
     private static final long serialVersionUID = -44388960384244269L;
 
@@ -25,7 +25,7 @@ public class MinioUrlResult extends MinioResult {
      */
     private LocalDateTime expiredAt;
 
-    public MinioUrlResult(String bucket, String objKey) {
+    public OssUrlResult(String bucket, String objKey) {
         super(bucket, objKey);
     }
 }

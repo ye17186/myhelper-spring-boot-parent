@@ -6,7 +6,7 @@
 
     <groupId>io.github.ye17186</groupId>
     <artifactId>myhelper-spring-boot-parent</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>myhelper-spring-boot-parent</name>
     <description>a web application starters</description>
@@ -38,6 +38,7 @@
         <module>myhelper-knife4j-spring-boot-starter</module>
         <module>myhelper-minio-spring-boot-starter</module>
         <module>myhelper-mybatis-spring-boot-starter</module>
+        <module>myhelper-oss-spring-boot-starter</module>
         <module>myhelper-token-spring-boot-starter</module>
         <module>myhelper-web-spring-boot-starter</module>
 
@@ -53,7 +54,7 @@
         <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
 
-        <my-helper.version>0.0.1</my-helper.version>
+        <my-helper.version>0.0.2-SNAPSHOT</my-helper.version>
 
         <!--    冲突管理    -->
         <checker-qual.version>3.19.0</checker-qual.version>
@@ -70,6 +71,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

@@ -1,4 +1,4 @@
-package io.github.ye17186.myhelper.minio.properties;
+package io.github.ye17186.myhelper.oss.properties;
 
 import io.github.ye17186.myhelper.core.oss.type.OssType;
 import lombok.Getter;
@@ -12,9 +12,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Setter
 @Getter
 @ConfigurationProperties(prefix = "spring.my-helper.oss")
-public class MhMinioProperties {
+public class MhOssProperties {
 
-    private OssType type = OssType.MINIO;
+    private OssType type = OssType.ASW;
 
     /**
      * endpoint

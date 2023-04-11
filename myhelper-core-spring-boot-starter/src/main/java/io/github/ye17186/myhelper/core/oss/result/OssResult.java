@@ -1,4 +1,4 @@
-package io.github.ye17186.myhelper.minio.result;
+package io.github.ye17186.myhelper.core.oss.result;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 @Setter
 @Getter
-public class MinioResult implements Serializable {
+public class OssResult implements Serializable {
 
     private static final long serialVersionUID = -6690631970849112223L;
 
@@ -35,7 +35,7 @@ public class MinioResult implements Serializable {
      */
     private long duration;
 
-    public MinioResult(String bucket, String objKey) {
+    public OssResult(String bucket, String objKey) {
         this.bucket = bucket;
         this.objKey = objKey;
     }

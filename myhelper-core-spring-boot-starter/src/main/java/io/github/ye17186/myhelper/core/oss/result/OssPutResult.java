@@ -1,4 +1,4 @@
-package io.github.ye17186.myhelper.minio.result;
+package io.github.ye17186.myhelper.core.oss.result;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,10 +9,10 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-public class MinioPutResult extends MinioResult {
+public class OssPutResult extends OssResult {
     private static final long serialVersionUID = 7846836842030552563L;
 
-    public MinioPutResult(String bucket, String objKey) {
+    public OssPutResult(String bucket, String objKey) {
         super(bucket, objKey);
     }
 }
