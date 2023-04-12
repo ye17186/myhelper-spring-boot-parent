@@ -1,22 +1,39 @@
 package io.github.ye17186.myhelper.web.autoconfigure;
 
+import io.github.ye17186.myhelper.web.autoconfigure.properties.MhWebCorsProperties;
+import io.github.ye17186.myhelper.web.autoconfigure.properties.MhWebProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 /**
  * @author ye1718620
  * @since 2023-02-09
  */
+@ConditionalOnProperty(name = "spring.my-helper.web.cors.enabled", havingValue = "true", matchIfMissing = true)
 @AutoConfiguration
-public class MhWebCorsAutoConfiguration implements WebMvcConfigurer {
+public class MhWebCorsAutoConfiguration {
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
+    @Autowired
+    MhWebProperties properties;
 
-        String mapping = "/**"; // 所有请求，也可配置成特定请求，如/api/**
-        String origins = "*"; // 所有来源，也可以配置成特定的来源才允许跨域，如http://www.xxxx.com
-        String methods = "*"; // 所有方法，GET、POST、PUT等
-        registry.addMapping(mapping).allowedOrigins(origins).allowedMethods(methods);
+    @Bean
+    public CorsFilter corsFilter() {
+
+        MhWebCorsProperties corsProperties = properties.getCors();
+
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowedOrigins(corsProperties.getOrigins());
+        config.setAllowedHeaders(corsProperties.getHeaders());
+        config.setAllowedMethods(corsProperties.getMethods());
+        config.setAllowCredentials(corsProperties.getAllowCredentials());
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration(corsProperties.getMapping(), config);
+        return new CorsFilter(source);
     }
 }

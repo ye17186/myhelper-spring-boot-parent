@@ -35,4 +35,9 @@ public class MhWebProperties {
      * 登录拦截器
      */
     private List<MhWebLoginInterceptorProperties> loginInterceptors = Lists.newArrayList();
+
+    /**
+     * 跨域
+     */
+    private MhWebCorsProperties cors = new MhWebCorsProperties();
 }
