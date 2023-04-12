@@ -1,5 +1,6 @@
 package io.github.ye17186.myhelper.web.autoconfigure.properties;
 
+import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,9 +19,9 @@ public class MhWebCorsProperties {
      */
     private boolean enabled = true;
 
-    private String mapping;
-    private List<String> origins;
-    private List<String> headers;
-    private List<String> methods;
+    private String mapping = "/**";
+    private List<String> origins = Lists.newArrayList("*");
+    private List<String> headers = Lists.newArrayList("*");
+    private List<String> methods = Lists.newArrayList("*");
     private Boolean allowCredentials;
 }
