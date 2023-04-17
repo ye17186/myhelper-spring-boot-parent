@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
- * Minio对象存储服务
+ * AWS对象存储服务
  *
  * @author ye1718620
  * @since 2023-02-15
@@ -49,7 +49,7 @@ public class MhAwsService implements MhOssTemplate {
         OssPutResult result = new OssPutResult(bucket, objKey);
         long start = System.currentTimeMillis();
         try {
-            log.info("[My-Helper][OSS] 上传文件到Minio开始。bucket：{}，objKey:{}", bucket, objKey);
+            log.info("[My-Helper][OSS] 上传文件到OSS开始。bucket：{}，objKey:{}", bucket, objKey);
 
             ObjectMetadata metadata = new ObjectMetadata();
             metadata.setContentLength(stream.available());
