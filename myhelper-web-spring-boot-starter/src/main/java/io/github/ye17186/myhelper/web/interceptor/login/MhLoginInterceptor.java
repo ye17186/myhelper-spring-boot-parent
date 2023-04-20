@@ -6,10 +6,10 @@ import io.github.ye17186.myhelper.core.web.context.user.MhUserContext;
 import io.github.ye17186.myhelper.core.web.error.ErrorCode;
 import io.github.ye17186.myhelper.core.web.response.ApiResp;
 import io.github.ye17186.myhelper.token.MhTokenService;
+import io.github.ye17186.myhelper.token.model.LoginKey;
 import io.github.ye17186.myhelper.web.context.MhUserCacheService;
 import io.github.ye17186.myhelper.web.interceptor.MhInterceptor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.lang.NonNull;
 import org.springframework.web.cors.CorsUtils;
 
@@ -66,9 +66,9 @@ public class MhLoginInterceptor extends MhInterceptor {
         boolean isLogin = mhTokenService.isLogin();
 
         if (isLogin) {
-            Pair<String, String> pair = mhTokenService.getLoginPair();
-            if (loginType.equals(pair.getLeft())) {
-                MhContextUser user = getCacheService().getAndCache(pair.getLeft(), pair.getRight());
+            LoginKey key = mhTokenService.getLoginKey();
+            if (key != null && loginType.equals(key.getLoginType())) {
+                MhContextUser user = getCacheService().getAndCache(key);
                 MhUserContext.set(user);
             } else {
                 isLogin = false;

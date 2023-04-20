@@ -9,10 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>myhelper-token-spring-boot-starter</artifactId>
+    <artifactId>myhelper-job-spring-boot-starter</artifactId>
+    <description>基于XXL-JOB的定时任务</description>
 
     <properties>
-        <sa-token.version>1.34.0</sa-token.version>
+        <xxl-job.version>2.4.0</xxl-job.version>
     </properties>
 
     <dependencies>
@@ -21,9 +22,9 @@
             <artifactId>myhelper-core-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-spring-boot-starter</artifactId>
-            <version>${sa-token.version}</version>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-job-core</artifactId>
+            <version>${xxl-job.version}</version>
         </dependency>
     </dependencies>
 

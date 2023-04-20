@@ -2,8 +2,7 @@ package io.github.ye17186.myhelper.token.listener;
 
 import cn.dev33.satoken.listener.SaTokenListenerForSimple;
 import cn.dev33.satoken.stp.SaLoginModel;
-import io.github.ye17186.myhelper.token.utils.LoginTypeUtils;
-import org.apache.commons.lang3.tuple.Pair;
+import io.github.ye17186.myhelper.token.model.LoginKey;
 
 /**
  * @author ye17186
@@ -16,7 +15,7 @@ public abstract class MhTokenListener extends SaTokenListenerForSimple {
     @Override
     public void doLogin(String loginType, Object loginId, String tokenValue, SaLoginModel loginModel) {
 
-        Pair<String, String> pair = LoginTypeUtils.decode(String.valueOf(loginId));
-        login(pair.getLeft(), pair.getRight(), tokenValue);
+        LoginKey key = LoginKey.decode(String.valueOf(loginId));
+        login(key.getLoginType(), key.getLoginId(), tokenValue);
     }
 }

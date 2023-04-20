@@ -1,6 +1,7 @@
 package io.github.ye17186.myhelper.token.permission;
 
 import cn.dev33.satoken.stp.StpInterface;
+import io.github.ye17186.myhelper.token.model.LoginKey;
 import org.springframework.lang.NonNull;
 
 import java.util.List;
@@ -14,16 +15,16 @@ public abstract class MhPermissionService implements StpInterface {
     /**
      * 获取当前登录用户的权限码集合
      *
-     * @param loginId 登录唯一标识
+     * @param key 登录唯一标识
      */
-    public abstract List<String> getPermissions(@NonNull String loginType, @NonNull String loginId);
+    public abstract List<String> getPermissions(@NonNull LoginKey key);
 
     /**
      * 获取当前登录用户的角色码集合
      *
-     * @param loginId 登录唯一标识
+     * @param key 登录唯一标识
      */
-    public abstract List<String> getRoles(@NonNull String loginType, @NonNull String loginId);
+    public abstract List<String> getRoles(@NonNull LoginKey key);
 
     /**
      * 获取权限码集合
@@ -34,7 +35,8 @@ public abstract class MhPermissionService implements StpInterface {
     @Override
     public List<String> getPermissionList(Object loginId, String loginType) {
 
-        return getPermissions(loginType, String.valueOf(loginId));
+        // 没有使用sa-token默认的loginType
+        return getPermissions(LoginKey.decode(String.valueOf(loginId)));
     }
 
     /**
@@ -46,6 +48,7 @@ public abstract class MhPermissionService implements StpInterface {
     @Override
     public List<String> getRoleList(Object loginId, String loginType) {
 
-        return getRoles(loginType, String.valueOf(loginId));
+        // 没有使用sa-token默认的loginType
+        return getRoles(LoginKey.decode(String.valueOf(loginId)));
     }
 }

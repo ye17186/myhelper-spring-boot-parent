@@ -2,9 +2,8 @@ package io.github.ye17186.myhelper.token;
 
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
+import io.github.ye17186.myhelper.token.model.LoginKey;
 import io.github.ye17186.myhelper.token.model.TokenInfo;
-import io.github.ye17186.myhelper.token.utils.LoginTypeUtils;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.List;
 
@@ -17,22 +16,11 @@ public class MhTokenService {
     /**
      * 用户登录
      *
-     * @param loginId 登录唯一标识
+     * @param key 登录唯一标识
      */
-    public TokenInfo login(String loginId) {
+    public TokenInfo login(LoginKey key) {
 
-        StpUtil.login(LoginTypeUtils.encode(LoginTypeUtils.DEFAULT_TYPE, loginId));
-        return toToken(StpUtil.getTokenInfo());
-    }
-
-    /**
-     * 用户登录
-     *
-     * @param loginId 登录唯一标识
-     */
-    public TokenInfo login(String loginType, String loginId) {
-
-        StpUtil.login(LoginTypeUtils.encode(loginType, loginId));
+        StpUtil.login(key.format());
         return toToken(StpUtil.getTokenInfo());
     }
 
@@ -47,17 +35,9 @@ public class MhTokenService {
     /**
      * 指定用户登出
      */
-    public void logout(String loginId) {
+    public void logout(LoginKey key) {
 
-        StpUtil.logout(LoginTypeUtils.encode(LoginTypeUtils.DEFAULT_TYPE, loginId));
-    }
-
-    /**
-     * 指定用户登出
-     */
-    public void logout(String loginType, String loginId) {
-
-        StpUtil.logout(LoginTypeUtils.encode(loginType, loginId));
+        StpUtil.logout(key.format());
     }
 
     /**
@@ -65,9 +45,9 @@ public class MhTokenService {
      *
      * @return 登录标识
      */
-    public Pair<String, String> getLoginPair() {
+    public LoginKey getLoginKey() {
 
-        return LoginTypeUtils.decode(StpUtil.getLoginIdAsString());
+        return LoginKey.decode(StpUtil.getLoginIdAsString());
     }
 
     /**
