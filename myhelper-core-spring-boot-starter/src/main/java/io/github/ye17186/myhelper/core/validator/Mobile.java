@@ -16,14 +16,14 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = {MobileValidator.class})
 public @interface Mobile {
 
-    String message() default "{io.github.ye17186.fhm.common.valid.Mobile.message}";
+    String message() default "{io.github.ye17186.myhelper.core.validator.Mobile.message}";
 
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
 
     /**
-     * 是否忽略空值
+     * 是否必须
      */
     boolean required() default false;
 }

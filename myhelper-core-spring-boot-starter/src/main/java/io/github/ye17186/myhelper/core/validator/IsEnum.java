@@ -16,7 +16,7 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = {EnumValidator.class})
 public @interface IsEnum {
 
-    String message() default "{io.github.ye17186.fhm.common.valid.Enum.message}";
+    String message() default "{io.github.ye17186.myhelper.core.validator.IsEnum.message}";
 
     Class<?>[] groups() default {};
 
@@ -29,13 +29,11 @@ public @interface IsEnum {
 
     /**
      * 校验域
-     * @return
      */
     String field() default "code";
 
     /**
-     * 是否忽略空值
-     * @return
+     * 是否必须
      */
     boolean required() default false;
 }

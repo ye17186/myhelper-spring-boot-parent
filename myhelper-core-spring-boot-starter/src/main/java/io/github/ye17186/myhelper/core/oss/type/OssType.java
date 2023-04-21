@@ -6,5 +6,6 @@ package io.github.ye17186.myhelper.core.oss.type;
  */
 public enum OssType {
 
-    AWS, MINIO
+    AWS,
+    MINIO
 }

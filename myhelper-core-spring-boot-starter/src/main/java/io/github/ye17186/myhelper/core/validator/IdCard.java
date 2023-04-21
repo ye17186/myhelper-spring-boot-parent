@@ -16,15 +16,14 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = {IdCardValidator.class})
 public @interface IdCard {
 
-    String message() default "{io.github.ye17186.fhm.common.valid.IdCard.message}";
+    String message() default "{io.github.ye17186.myhelper.core.validator.IdCard.message}";
 
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
 
     /**
-     * 是否忽略空值
-     * @return
+     * 是否必须
      */
     boolean required() default false;
 }
