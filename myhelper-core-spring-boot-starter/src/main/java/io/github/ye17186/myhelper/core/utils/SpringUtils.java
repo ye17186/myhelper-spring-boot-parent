@@ -3,7 +3,6 @@ package io.github.ye17186.myhelper.core.utils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
-import org.springframework.lang.Nullable;
 
 import java.lang.annotation.Annotation;
 import java.util.Map;
@@ -45,13 +44,17 @@ public class SpringUtils {
         return context.getBeansWithAnnotation(cls);
     }
 
-    @Nullable
     public static ApplicationContext getContext() {
+
         return context;
     }
 
-    @Nullable
     public static Environment getEnv() {
         return context == null ? null : context.getEnvironment();
+    }
+
+    public static String getAppEnv() {
+
+        return context == null ? null : context.getEnvironment().getProperty("spring.application.env");
     }
 }
