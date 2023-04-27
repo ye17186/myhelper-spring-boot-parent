@@ -3,7 +3,7 @@ package io.github.ye17186.myhelper.core.jackson;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 /**
- * @author ye1718620
+ * @author ye17186
  * @since 2023-02-08
  */
 public class ObjectMappers {

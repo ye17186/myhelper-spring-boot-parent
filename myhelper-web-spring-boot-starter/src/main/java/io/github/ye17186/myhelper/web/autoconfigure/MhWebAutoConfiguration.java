@@ -18,7 +18,7 @@ import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
- * @author ye1718620
+ * @author ye17186
  * @since 2023-02-09
  */
 @AutoConfiguration

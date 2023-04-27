@@ -1,9 +1,13 @@
 package io.github.ye17186.myhelper.minio;
 
+import io.github.ye17186.myhelper.core.exception.BizException;
+import io.github.ye17186.myhelper.core.oss.result.OssDownloadResult;
 import io.github.ye17186.myhelper.core.oss.result.OssPutResult;
 import io.github.ye17186.myhelper.core.oss.result.OssUrlResult;
 import io.github.ye17186.myhelper.core.oss.template.MhOssTemplate;
 import io.github.ye17186.myhelper.core.utils.JsonUtils;
+import io.github.ye17186.myhelper.core.web.error.ErrorCode;
+import io.minio.DownloadObjectArgs;
 import io.minio.GetPresignedObjectUrlArgs;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
@@ -12,12 +16,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 
 import java.io.InputStream;
+import java.net.URL;
 import java.time.LocalDateTime;
 
 /**
  * Minio对象存储服务
  *
- * @author ye1718620
+ * @author ye17186
  * @since 2023-02-15
  */
 @Slf4j
@@ -103,5 +108,11 @@ public class MhMinioService implements MhOssTemplate {
             log.info("[My-Helper][Minio] 获取文件URL结束。结果：{}", JsonUtils.obj2Json(result));
         }
         return result;
+    }
+
+    @Override
+    public OssDownloadResult download(String url) {
+
+        throw new BizException(ErrorCode.SYSTEM_ERROR.getCode(), "Minio暂不支持下载文件");
     }
 }

@@ -14,7 +14,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 
 /**
- * @author ye1718620
+ * @author ye17186
  * @since 2023-02-08
  */
 @AutoConfiguration
@@ -41,5 +41,4 @@ public class MhOssAutoConfiguration {
 
         return new MhAwsService(s3Client);
     }
-
 }

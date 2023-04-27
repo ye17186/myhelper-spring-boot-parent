@@ -6,7 +6,7 @@ import io.github.ye17186.myhelper.core.job.MhJob;
 import io.github.ye17186.myhelper.core.job.JobContext;
 
 /**
- * @author yemeng20
+ * @author ye17186
  * @date 2023-04-17
  */
 public class BeanJobHandler extends IJobHandler {

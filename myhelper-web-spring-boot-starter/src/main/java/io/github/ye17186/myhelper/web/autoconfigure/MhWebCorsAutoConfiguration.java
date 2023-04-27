@@ -11,7 +11,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 /**
- * @author ye1718620
+ * @author ye17186
  * @since 2023-02-09
  */
 @ConditionalOnProperty(name = "spring.my-helper.web.cors.enabled", havingValue = "true", matchIfMissing = true)

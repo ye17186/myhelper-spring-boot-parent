@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationContext;
 import java.util.Map;
 
 /**
- * @author yemeng20
+ * @author ye17186
  * @date 2023-04-17
  */
 public class MhJobSpringExecutor extends XxlJobSpringExecutor {

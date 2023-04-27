@@ -21,7 +21,7 @@ public class MhTokenService {
     public TokenInfo login(LoginKey key) {
 
         StpUtil.login(key.format());
-        return toToken(StpUtil.getTokenInfo());
+        return toToken(StpUtil.getTokenInfo(), key);
     }
 
     /**
@@ -88,10 +88,10 @@ public class MhTokenService {
         return StpUtil.hasRole(role);
     }
 
-    private TokenInfo toToken(SaTokenInfo info) {
+    private TokenInfo toToken(SaTokenInfo info, LoginKey key) {
 
         TokenInfo token = new TokenInfo();
-        token.setLoginType(info.getLoginType());
+        token.setLoginType(key.getLoginType());
         token.setTokenName(info.getTokenName());
         token.setTokenValue(info.getTokenValue());
         token.setExpiredAt(System.currentTimeMillis() + info.getTokenTimeout() * 1000);

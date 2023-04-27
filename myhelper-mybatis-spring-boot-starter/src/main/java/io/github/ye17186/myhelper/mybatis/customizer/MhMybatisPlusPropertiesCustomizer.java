@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.config.GlobalConfig;
 import io.github.ye17186.myhelper.mybatis.aotuconfigure.properties.MhMybatisProperties;
 
 /**
- * @author ye1718620
+ * @author ye17186
  * @since 2023-02-09
  */
 public class MhMybatisPlusPropertiesCustomizer implements MybatisPlusPropertiesCustomizer {

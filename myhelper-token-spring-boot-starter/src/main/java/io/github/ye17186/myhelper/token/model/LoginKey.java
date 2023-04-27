@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * 多账号体系下的登录Key
  *
- * @author yemeng20
+ * @author ye17186
  * @date 2023-04-20
  */
 @Setter

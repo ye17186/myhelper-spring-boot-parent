@@ -1,5 +1,6 @@
 package io.github.ye17186.myhelper.core.oss.template;
 
+import io.github.ye17186.myhelper.core.oss.result.OssDownloadResult;
 import io.github.ye17186.myhelper.core.oss.result.OssPutResult;
 import io.github.ye17186.myhelper.core.oss.result.OssUrlResult;
 
@@ -49,4 +50,11 @@ public interface MhOssTemplate {
      * @param expire 有效时间，单位秒，minio最大支持7天
      */
     OssUrlResult getUrl(String bucket, String objKey, int expire);
+
+    /**
+     * 通过URL下载文件
+     *
+     * @param url 文件URL
+     */
+    OssDownloadResult download(String url);
 }

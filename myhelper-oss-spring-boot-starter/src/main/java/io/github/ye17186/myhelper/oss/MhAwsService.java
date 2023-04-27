@@ -1,9 +1,8 @@
 package io.github.ye17186.myhelper.oss;
 
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.*;
+import io.github.ye17186.myhelper.core.oss.result.OssDownloadResult;
 import io.github.ye17186.myhelper.core.oss.result.OssPutResult;
 import io.github.ye17186.myhelper.core.oss.result.OssUrlResult;
 import io.github.ye17186.myhelper.core.oss.template.MhOssTemplate;
@@ -19,7 +18,7 @@ import java.util.Date;
 /**
  * AWS对象存储服务
  *
- * @author ye1718620
+ * @author ye17186
  * @since 2023-02-15
  */
 @Slf4j
@@ -101,6 +100,24 @@ public class MhAwsService implements MhOssTemplate {
         } finally {
             result.setDuration(System.currentTimeMillis() - start);
             log.info("[My-Helper][OSS] 获取文件URL结束。结果：{}", JsonUtils.obj2Json(result));
+        }
+        return result;
+    }
+
+    public OssDownloadResult download(String url) {
+
+        OssDownloadResult result = new OssDownloadResult("", "");
+        long start = System.currentTimeMillis();
+        try {
+            PresignedUrlDownloadRequest request = new PresignedUrlDownloadRequest(new URL(url));
+            PresignedUrlDownloadResult response = client.download(request);
+            result.setInputStream(response.getS3Object().getObjectContent());
+        } catch (Exception e) {
+            log.info("[My-Helper][OSS] 通过URL下载文件异常。", e);
+            result.setSuccess(false);
+        } finally {
+            result.setDuration(System.currentTimeMillis() - start);
+            log.info("[My-Helper][OSS] 通过URL下载文件。结果：{}", JsonUtils.obj2Json(result));
         }
         return result;
     }

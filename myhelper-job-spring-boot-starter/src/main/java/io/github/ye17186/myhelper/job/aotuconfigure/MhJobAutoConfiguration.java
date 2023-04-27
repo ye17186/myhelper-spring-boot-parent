@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 /**
  * 基于XXL-JOB的分布式定时任务
  *
- * @author yemeng20
+ * @author ye17186
  * @date 2023-04-17
  */
 @Slf4j
