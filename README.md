@@ -5,7 +5,7 @@
 <dependency>
     <groupId>io.github.ye17186</groupId>
     <artifactId>myhelper-xxx-spring-boot-starter</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -13,14 +13,21 @@
 这里的文档待补充
 
 ## 更新日志
+### V0.0.4
+#### 基础
+- spring-boot版本升级 `2.7.8` -> `2.7.12`
+
+#### myhelper-imail-spring-boot-starter
+- 新增站内信模块
+
 ### V0.0.3
-#### myhelper-core-spring-boot-start
+#### myhelper-core-spring-boot-starter
 - 参数校验提示信息message问题修复
 
 #### myhelper-job-spring-boot-starter
 - 集成基于xxl-job的分布式调度模块
 
-#### myhelper-token-spring-boot-start
+#### myhelper-token-spring-boot-starter
 - 支持多账户体系的登录
 - 模块部分代码优化
 

@@ -43,4 +43,9 @@ public abstract class MhUserContext implements Serializable {
 
         return Optional.ofNullable(get()).map(MhContextUser::getMhToken).orElse("");
     }
+
+    public static String mhLoginKey() {
+
+        return Optional.ofNullable(get()).map(MhContextUser::getLoginKey).orElse("");
+    }
 }

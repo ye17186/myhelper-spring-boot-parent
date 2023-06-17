@@ -7,9 +7,8 @@
         <artifactId>myhelper-spring-boot-parent</artifactId>
         <version>0.0.4-SNAPSHOT</version>
     </parent>
-    <artifactId>myhelper-oss-spring-boot-starter</artifactId>
+    <artifactId>myhelper-imail-spring-boot-starter</artifactId>
     <properties>
-        <aws-java-sdk-s3.version>1.12.444</aws-java-sdk-s3.version>
     </properties>
     <dependencies>
         <dependency>
@@ -17,9 +16,8 @@
             <artifactId>myhelper-core-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-java-sdk-s3</artifactId>
-            <version>${aws-java-sdk-s3.version}</version>
+            <groupId>io.github.ye17186</groupId>
+            <artifactId>myhelper-mybatis-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
 
