@@ -1,22 +1,16 @@
 package io.github.ye17186.myhelper.minio;
 
-import io.github.ye17186.myhelper.core.exception.BizException;
-import io.github.ye17186.myhelper.core.oss.result.OssDownloadResult;
+import io.github.ye17186.myhelper.core.oss.result.OssGetResult;
 import io.github.ye17186.myhelper.core.oss.result.OssPutResult;
 import io.github.ye17186.myhelper.core.oss.result.OssUrlResult;
 import io.github.ye17186.myhelper.core.oss.template.MhOssTemplate;
 import io.github.ye17186.myhelper.core.utils.JsonUtils;
-import io.github.ye17186.myhelper.core.web.error.ErrorCode;
-import io.minio.DownloadObjectArgs;
-import io.minio.GetPresignedObjectUrlArgs;
-import io.minio.MinioClient;
-import io.minio.PutObjectArgs;
+import io.minio.*;
 import io.minio.http.Method;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 
 import java.io.InputStream;
-import java.net.URL;
 import java.time.LocalDateTime;
 
 /**
@@ -68,6 +62,25 @@ public class MhMinioService implements MhOssTemplate {
     }
 
     @Override
+    public OssGetResult getObj(String bucket, String objKey) {
+
+        OssGetResult result = new OssGetResult(bucket, objKey);
+        long start = System.currentTimeMillis();
+        try {
+            GetObjectArgs args = GetObjectArgs.builder().bucket(bucket).object(objKey).build();
+            GetObjectResponse response = client.getObject(args);
+            result.setInputStream(response);
+        } catch (Exception e) {
+            log.info("[My-Helper][Minio] 获取文件流异常。", e);
+            result.setSuccess(false);
+        } finally {
+            result.setDuration(System.currentTimeMillis() - start);
+            log.info("[My-Helper][Minio] 获取文件流结束。结果：{}", JsonUtils.obj2Json(result));
+        }
+        return result;
+    }
+
+    @Override
     public OssUrlResult getUrl(String bucket, String objKey) {
 
         OssUrlResult result = new OssUrlResult(bucket, objKey);
@@ -108,11 +121,5 @@ public class MhMinioService implements MhOssTemplate {
             log.info("[My-Helper][Minio] 获取文件URL结束。结果：{}", JsonUtils.obj2Json(result));
         }
         return result;
-    }
-
-    @Override
-    public OssDownloadResult download(String url) {
-
-        throw new BizException(ErrorCode.SYSTEM_ERROR.getCode(), "Minio暂不支持下载文件");
     }
 }

@@ -2,7 +2,7 @@ package io.github.ye17186.myhelper.oss;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.*;
-import io.github.ye17186.myhelper.core.oss.result.OssDownloadResult;
+import io.github.ye17186.myhelper.core.oss.result.OssGetResult;
 import io.github.ye17186.myhelper.core.oss.result.OssPutResult;
 import io.github.ye17186.myhelper.core.oss.result.OssUrlResult;
 import io.github.ye17186.myhelper.core.oss.template.MhOssTemplate;
@@ -66,6 +66,25 @@ public class MhAwsService implements MhOssTemplate {
     }
 
     @Override
+    public OssGetResult getObj(String bucket, String objKey) {
+
+        OssGetResult result = new OssGetResult(bucket, objKey);
+        long start = System.currentTimeMillis();
+        try {
+            GetObjectRequest request = new GetObjectRequest(bucket, objKey);
+            S3Object response = client.getObject(request);
+            result.setInputStream(response.getObjectContent());
+        } catch (Exception e) {
+            log.info("[My-Helper][OSS] 获取文件流异常。", e);
+            result.setSuccess(false);
+        } finally {
+            result.setDuration(System.currentTimeMillis() - start);
+            log.info("[My-Helper][OSS] 获取文件流结束。结果：{}", JsonUtils.obj2Json(result));
+        }
+        return result;
+    }
+
+    @Override
     public OssUrlResult getUrl(String bucket, String objKey) {
 
         OssUrlResult result = new OssUrlResult(bucket, objKey);
@@ -100,24 +119,6 @@ public class MhAwsService implements MhOssTemplate {
         } finally {
             result.setDuration(System.currentTimeMillis() - start);
             log.info("[My-Helper][OSS] 获取文件URL结束。结果：{}", JsonUtils.obj2Json(result));
-        }
-        return result;
-    }
-
-    public OssDownloadResult download(String url) {
-
-        OssDownloadResult result = new OssDownloadResult("", "");
-        long start = System.currentTimeMillis();
-        try {
-            PresignedUrlDownloadRequest request = new PresignedUrlDownloadRequest(new URL(url));
-            PresignedUrlDownloadResult response = client.download(request);
-            result.setInputStream(response.getS3Object().getObjectContent());
-        } catch (Exception e) {
-            log.info("[My-Helper][OSS] 通过URL下载文件异常。", e);
-            result.setSuccess(false);
-        } finally {
-            result.setDuration(System.currentTimeMillis() - start);
-            log.info("[My-Helper][OSS] 通过URL下载文件。结果：{}", JsonUtils.obj2Json(result));
         }
         return result;
     }

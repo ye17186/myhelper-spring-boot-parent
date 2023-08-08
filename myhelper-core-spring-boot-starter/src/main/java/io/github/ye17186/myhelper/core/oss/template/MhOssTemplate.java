@@ -1,6 +1,6 @@
 package io.github.ye17186.myhelper.core.oss.template;
 
-import io.github.ye17186.myhelper.core.oss.result.OssDownloadResult;
+import io.github.ye17186.myhelper.core.oss.result.OssGetResult;
 import io.github.ye17186.myhelper.core.oss.result.OssPutResult;
 import io.github.ye17186.myhelper.core.oss.result.OssUrlResult;
 
@@ -26,12 +26,14 @@ public interface MhOssTemplate {
     /**
      * 存入对象
      *
-     * @param bucket 桶
-     * @param objKey key
-     * @param stream 文件流
+     * @param bucket      桶
+     * @param objKey      key
+     * @param stream      文件流
      * @param contentType type
      */
     OssPutResult putObj(String bucket, String objKey, InputStream stream, String contentType);
+
+    OssGetResult getObj(String bucket, String objKey);
 
     /**
      * 获取永久URL
@@ -50,11 +52,4 @@ public interface MhOssTemplate {
      * @param expire 有效时间，单位秒，minio最大支持7天
      */
     OssUrlResult getUrl(String bucket, String objKey, int expire);
-
-    /**
-     * 通过URL下载文件
-     *
-     * @param url 文件URL
-     */
-    OssDownloadResult download(String url);
 }
