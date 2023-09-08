@@ -11,8 +11,7 @@
     <artifactId>myhelper-mybatis-spring-boot-starter</artifactId>
 
     <properties>
-        <mybatis-plus.version>3.5.3</mybatis-plus.version>
-        <mybatis-plus-generator.version>3.5.3</mybatis-plus-generator.version>
+        <mybatis-plus.version>3.5.3.2</mybatis-plus.version>
     </properties>
 
     <dependencies>

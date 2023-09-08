@@ -16,6 +16,9 @@ public class IdRequest extends BaseRequest {
 
     private static final long serialVersionUID = -3044237931910914962L;
 
+    /**
+     * 业务ID
+     */
     @NotNull
     private Long id;
 }

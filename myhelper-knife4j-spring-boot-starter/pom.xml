@@ -10,7 +10,7 @@
     <artifactId>myhelper-knife4j-spring-boot-starter</artifactId>
     <properties>
         <springdoc-openapi-ui.version>1.6.9</springdoc-openapi-ui.version>
-        <knife4j.version>4.0.0</knife4j.version>
+        <knife4j.version>4.3.0</knife4j.version>
     </properties>
     <dependencies>
         <dependency>
