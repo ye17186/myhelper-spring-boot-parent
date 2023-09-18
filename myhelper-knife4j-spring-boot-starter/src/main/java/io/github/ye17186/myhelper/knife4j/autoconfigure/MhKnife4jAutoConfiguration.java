@@ -1,8 +1,8 @@
-package io.github.ye17186.myhelper.knife4j.aotuconfigure;
+package io.github.ye17186.myhelper.knife4j.autoconfigure;
 
 import io.github.ye17186.myhelper.knife4j.converter.EnumSchemaConverter;
 import io.github.ye17186.myhelper.knife4j.customizer.KnifeExtOpenApiCustomizer;
-import io.github.ye17186.myhelper.knife4j.aotuconfigure.properties.MhKnife4jProperties;
+import io.github.ye17186.myhelper.knife4j.autoconfigure.properties.MhKnife4jProperties;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package io.github.ye17186.myhelper.mybatis.aotuconfigure.properties;
+package io.github.ye17186.myhelper.mybatis.autoconfigure.properties;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import lombok.Getter;

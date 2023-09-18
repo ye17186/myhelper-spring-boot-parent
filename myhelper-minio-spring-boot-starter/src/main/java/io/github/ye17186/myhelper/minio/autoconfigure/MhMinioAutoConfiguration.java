@@ -1,4 +1,4 @@
-package io.github.ye17186.myhelper.minio.aotuconfigure;
+package io.github.ye17186.myhelper.minio.autoconfigure;
 
 import io.github.ye17186.myhelper.minio.MhMinioService;
 import io.github.ye17186.myhelper.minio.properties.MhMinioProperties;

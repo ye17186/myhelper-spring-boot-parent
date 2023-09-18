@@ -1,4 +1,4 @@
-package io.github.ye17186.myhelper.oss.aotuconfigure;
+package io.github.ye17186.myhelper.oss.autoconfigure;
 
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentials;

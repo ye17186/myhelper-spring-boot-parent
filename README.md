@@ -5,7 +5,7 @@
 <dependency>
     <groupId>io.github.ye17186</groupId>
     <artifactId>myhelper-xxx-spring-boot-starter</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
 </dependency>
 ```
 
@@ -13,12 +13,22 @@
 这里的文档待补充
 
 ## 更新日志
+
+### V0.0.5
+#### myhelper-datasource-spring-boot-starter
+- 自增myhelper-datasource-spring-boot-starter模块
+
 ### V0.0.4
 #### 基础
-- spring-boot版本升级 `2.7.8` -> `2.7.12`
+- spring-boot版本升级 `2.7.8` -> `2.7.15`
+- easy-excel支持
 
-#### myhelper-imail-spring-boot-starter
-- 新增站内信模块
+#### myhelper-oss-spring-boot-starter
+- 直增支持`getObj()`方法，用于获取oss对象
+
+#### myhelper-minio-spring-boot-starter
+注意，本模块后续版本中将被移除，请使用`myhelper-oss-spring-boot-starter`代替
+- 直增支持`getObj()`方法，用于获取oss对象
 
 ### V0.0.3
 #### myhelper-core-spring-boot-starter

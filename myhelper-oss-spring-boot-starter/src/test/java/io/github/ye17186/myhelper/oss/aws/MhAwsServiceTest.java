@@ -3,7 +3,7 @@ package io.github.ye17186.myhelper.oss.aws;
 import io.github.ye17186.myhelper.core.utils.IdUtils;
 import io.github.ye17186.myhelper.core.utils.JsonUtils;
 import io.github.ye17186.myhelper.oss.MhAwsService;
-import io.github.ye17186.myhelper.oss.aotuconfigure.MhOssAutoConfiguration;
+import io.github.ye17186.myhelper.oss.autoconfigure.MhOssAutoConfiguration;
 import io.github.ye17186.myhelper.core.oss.result.OssPutResult;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;

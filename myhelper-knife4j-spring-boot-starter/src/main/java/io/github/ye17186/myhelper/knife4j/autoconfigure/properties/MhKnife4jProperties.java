@@ -1,4 +1,4 @@
-package io.github.ye17186.myhelper.knife4j.aotuconfigure.properties;
+package io.github.ye17186.myhelper.knife4j.autoconfigure.properties;
 
 import lombok.Getter;
 import lombok.Setter;

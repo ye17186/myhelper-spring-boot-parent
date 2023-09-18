@@ -1,6 +1,6 @@
-package io.github.ye17186.myhelper.job.aotuconfigure;
+package io.github.ye17186.myhelper.job.autoconfigure;
 
-import io.github.ye17186.myhelper.job.aotuconfigure.properties.MhJobProperties;
+import io.github.ye17186.myhelper.job.autoconfigure.properties.MhJobProperties;
 import io.github.ye17186.myhelper.job.executor.MhJobSpringExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

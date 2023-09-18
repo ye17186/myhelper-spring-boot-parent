@@ -3,7 +3,7 @@ package io.github.ye17186.myhelper.mybatis.customizer;
 import com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties;
 import com.baomidou.mybatisplus.autoconfigure.MybatisPlusPropertiesCustomizer;
 import com.baomidou.mybatisplus.core.config.GlobalConfig;
-import io.github.ye17186.myhelper.mybatis.aotuconfigure.properties.MhMybatisProperties;
+import io.github.ye17186.myhelper.mybatis.autoconfigure.properties.MhMybatisProperties;
 
 /**
  * @author ye17186

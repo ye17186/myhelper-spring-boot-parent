@@ -1,4 +1,4 @@
-package io.github.ye17186.myhelper.job.aotuconfigure.properties;
+package io.github.ye17186.myhelper.job.autoconfigure.properties;
 
 import lombok.Getter;
 import lombok.Setter;

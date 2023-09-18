@@ -1,10 +1,10 @@
-package io.github.ye17186.myhelper.mybatis.aotuconfigure;
+package io.github.ye17186.myhelper.mybatis.autoconfigure;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import io.github.ye17186.myhelper.mybatis.customizer.MhMybatisPlusPropertiesCustomizer;
-import io.github.ye17186.myhelper.mybatis.aotuconfigure.properties.MhMybatisProperties;
+import io.github.ye17186.myhelper.mybatis.autoconfigure.properties.MhMybatisProperties;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
