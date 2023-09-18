@@ -12,6 +12,7 @@
     <artifactId>myhelper-core-spring-boot-starter</artifactId>
 
     <name>myhelper-core-spring-boot-starter</name>
+    <description>Myhelper组件 - 核心Core模块</description>
 
     <properties>
         <guava.version>31.1-jre</guava.version>

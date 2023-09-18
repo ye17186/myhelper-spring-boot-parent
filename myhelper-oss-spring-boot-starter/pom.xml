@@ -8,6 +8,8 @@
         <version>0.0.5</version>
     </parent>
     <artifactId>myhelper-oss-spring-boot-starter</artifactId>
+    <description>Myhelper组件 - Oss模块</description>
+
     <properties>
         <aws-java-sdk-s3.version>1.12.444</aws-java-sdk-s3.version>
     </properties>

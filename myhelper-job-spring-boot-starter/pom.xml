@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>myhelper-job-spring-boot-starter</artifactId>
-    <description>基于XXL-JOB的定时任务</description>
+    <description>Myhelper组件 - Job模块</description>
 
     <properties>
         <xxl-job.version>2.4.0</xxl-job.version>
