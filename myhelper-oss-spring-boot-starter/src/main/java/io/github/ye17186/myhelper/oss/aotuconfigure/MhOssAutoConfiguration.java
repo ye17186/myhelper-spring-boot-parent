@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Bean;
 public class MhOssAutoConfiguration {
 
     @Bean
-    public MhAwsService mhMinioService(MhOssProperties properties) {
+    public MhAwsService mhAwsService(MhOssProperties properties) {
 
         AWSCredentials credentials = new BasicAWSCredentials(properties.getAccessKey(), properties.getSecretKey());
         ClientConfiguration clientConfiguration = new ClientConfiguration();

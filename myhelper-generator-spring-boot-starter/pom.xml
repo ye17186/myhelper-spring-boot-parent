@@ -12,7 +12,7 @@
     <artifactId>myhelper-generator-spring-boot-starter</artifactId>
 
     <properties>
-        <mybatis-plus-generator.version>3.5.3</mybatis-plus-generator.version>
+        <mybatis-plus-generator.version>3.5.3.2</mybatis-plus-generator.version>
         <freemarker.version>2.3.31</freemarker.version>
     </properties>
 

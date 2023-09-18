@@ -12,11 +12,11 @@ import java.io.InputStream;
  */
 @Setter
 @Getter
-public class OssDownloadResult extends OssResult {
+public class OssGetResult extends OssResult {
 
     private static final long serialVersionUID = -44388960384244269L;
 
-    public OssDownloadResult(String bucket, String objKey) {
+    public OssGetResult(String bucket, String objKey) {
 
         super(bucket, objKey);
     }
