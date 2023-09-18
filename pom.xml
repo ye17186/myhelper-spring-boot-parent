@@ -34,6 +34,7 @@
     <modules>
         <module>myhelper-caffeine-spring-boot-starter</module>
         <module>myhelper-core-spring-boot-starter</module>
+        <module>myhelper-datasource-spring-boot-starter</module>
         <module>myhelper-generator-spring-boot-starter</module>
         <module>myhelper-knife4j-spring-boot-starter</module>
         <module>myhelper-minio-spring-boot-starter</module>
@@ -42,7 +43,6 @@
         <module>myhelper-token-spring-boot-starter</module>
         <module>myhelper-web-spring-boot-starter</module>
         <module>myhelper-job-spring-boot-starter</module>
-        <module>myhelper-datasource-spring-boot-starter</module>
 
     </modules>
 
@@ -102,6 +102,11 @@
             <dependency>
                 <groupId>io.github.ye17186</groupId>
                 <artifactId>myhelper-core-spring-boot-starter</artifactId>
+                <version>${my-helper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.ye17186</groupId>
+                <artifactId>myhelper-datasource-spring-boot-starter</artifactId>
                 <version>${my-helper.version}</version>
             </dependency>
             <dependency>

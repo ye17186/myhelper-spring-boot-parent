@@ -76,6 +76,7 @@ public class MhRequestContextFilter extends OncePerRequestFilter {
 
         return !(uri.startsWith("/swagger")
                 || uri.startsWith("/webjars")
-                || uri.startsWith("/v3/api-docs"));
+                || uri.startsWith("/v3/api-docs")
+                || uri.startsWith("/druid"));
     }
 }
