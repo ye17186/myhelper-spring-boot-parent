@@ -15,8 +15,10 @@
 ## 更新日志
 
 ### V0.0.5
+#### myhelper-core-spring-boot-starter
+- 新增CryptoUtils加解密工具类，支持RSA、AES加解密
 #### myhelper-datasource-spring-boot-starter
-- 自增myhelper-datasource-spring-boot-starter模块
+- 新增myhelper-datasource-spring-boot-starter模块
 
 ### V0.0.4
 #### 基础

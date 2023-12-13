@@ -1,2 +1,4 @@
 /*/target/
 /.idea/
+# lock模块开发中
+/myhelper-lock-spring-boot-starter

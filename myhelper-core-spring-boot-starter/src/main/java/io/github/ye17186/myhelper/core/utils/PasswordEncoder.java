@@ -17,7 +17,7 @@ public class PasswordEncoder {
      */
     public static String encode(String rawPassword, String salt) {
 
-        return DigestUtils.md5DigestAsHex((rawPassword + salt).getBytes());
+        return DigestUtils.md5DigestAsHex((DigestUtils.md5DigestAsHex(rawPassword.getBytes()) + DigestUtils.md5DigestAsHex(salt.getBytes())).getBytes());
     }
 
     /**

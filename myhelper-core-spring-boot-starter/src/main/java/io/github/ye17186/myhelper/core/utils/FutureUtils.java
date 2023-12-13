@@ -36,7 +36,6 @@ public class FutureUtils {
      * @param timeout       超时时间
      * @param defaultResult 超时默认结果
      * @param <T>           结果泛型
-     * @return
      */
     public static <T> T get(Future<T> future, int timeout, T defaultResult) {
 

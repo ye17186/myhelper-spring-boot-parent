@@ -9,7 +9,7 @@
     <version>0.0.5</version>
     <packaging>pom</packaging>
     <name>myhelper-spring-boot-parent</name>
-    <description>a web application starters</description>
+    <description>a web application starter collection</description>
 
     <url>https://www.ye186.top</url>
     <scm>
@@ -37,6 +37,7 @@
         <module>myhelper-datasource-spring-boot-starter</module>
         <module>myhelper-generator-spring-boot-starter</module>
         <module>myhelper-knife4j-spring-boot-starter</module>
+        <module>myhelper-lock-spring-boot-starter</module>
         <module>myhelper-minio-spring-boot-starter</module>
         <module>myhelper-mybatis-spring-boot-starter</module>
         <module>myhelper-oss-spring-boot-starter</module>
@@ -117,6 +118,11 @@
             <dependency>
                 <groupId>io.github.ye17186</groupId>
                 <artifactId>myhelper-knife4j-spring-boot-starter</artifactId>
+                <version>${my-helper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.ye17186</groupId>
+                <artifactId>myhelper-lock-spring-boot-starter</artifactId>
                 <version>${my-helper.version}</version>
             </dependency>
             <dependency>

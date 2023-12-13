@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 /**
  * @author ye17186
@@ -18,11 +19,13 @@ public class MhMybatisProperties {
     /**
      * 基础配置
      */
+    @NestedConfigurationProperty
     private MybatisConfig config = new MybatisConfig();
 
     /**
      * 逻辑删除配置
      */
+    @NestedConfigurationProperty
     private MybatisLogicDelProperties logicDelConfig = new MybatisLogicDelProperties();
 
     @Getter

@@ -30,29 +30,28 @@ public class DateUtils {
 
     /**
      * LocalDate转Date
+     *
      * @param localDate 当前日期
-     * @return
      */
     public static Date toDate(LocalDate localDate) {
         return localDate == null ? null
-            : Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                : Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
 
     /**
      * LocalDateTime转Date
+     *
      * @param dateTime 日期时间
-     * @return
      */
     public static Date toDate(LocalDateTime dateTime) {
         return dateTime == null ? null
-            : Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant());
+                : Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant());
     }
 
     /**
      * 字符串解析成LocalDateTime
      *
      * @param str 时间字符串，默认格式为yyyy-MM-dd HH:mm:ss
-     * @return
      */
     public static LocalDateTime parse(CharSequence str) {
         return parse(str, DEFAULT_FORMAT);
@@ -63,7 +62,6 @@ public class DateUtils {
      *
      * @param str     时间字符串
      * @param pattern 指定格式
-     * @return
      */
     public static LocalDateTime parse(CharSequence str, String pattern) {
         return LocalDateTime.parse(str, DateTimeFormatter.ofPattern(pattern));
@@ -83,7 +81,6 @@ public class DateUtils {
      *
      * @param str     时间字符串
      * @param pattern 指定格式
-     * @return
      */
     public static Date parse(String str, String pattern) {
         SimpleDateFormat df = new SimpleDateFormat(pattern);
@@ -96,16 +93,14 @@ public class DateUtils {
 
     /**
      * Date转LocalDateTime
-     * @return
      */
     public static LocalDateTime toLocalDateTime(Date date) {
         return date == null ? null
-            : date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+                : date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
     /**
      * Date转LocalDate
-     * @return
      */
     public static LocalDate toLocalDate(Date date) {
         return date == null ? null : date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -113,7 +108,6 @@ public class DateUtils {
 
     /**
      * 格式化时间（yyyy-MM-dd HH:mm:ss）
-     * @return
      */
     public static String format(LocalDateTime dateTime) {
 
@@ -132,7 +126,6 @@ public class DateUtils {
      *
      * @param dataTime LocalDateTime时间
      * @param pattern  格式
-     * @return
      */
     public static String format(LocalDateTime dataTime, String pattern) {
         return dataTime.format(DateTimeFormatter.ofPattern(pattern));
@@ -140,9 +133,9 @@ public class DateUtils {
 
     /**
      * 格式化时间（yyyy-MM-dd HH:mm:ss）
-     * @param date 日期
+     *
+     * @param date    日期
      * @param pattern 格式
-     * @return
      */
     public static String format(Date date, String pattern) {
         return format(toLocalDateTime(date), pattern);
@@ -152,7 +145,6 @@ public class DateUtils {
      * 格式化日期（yyyy-MM-dd）
      *
      * @param localDate LocalDate日期
-     * @return
      */
     public static String format(LocalDate localDate) {
         return format(localDate, DEFAULT_DATE_FORMAT);
@@ -172,7 +164,6 @@ public class DateUtils {
      * 格式化时间（HH:mm:ss）
      *
      * @param localTime LocalTime时间
-     * @return
      */
     public static String format(LocalTime localTime) {
         return format(localTime, DEFAULT_TIME_FORMAT);
@@ -183,7 +174,6 @@ public class DateUtils {
      *
      * @param localTime LocalTime时间
      * @param pattern   格式
-     * @return
      */
     public static String format(LocalTime localTime, String pattern) {
         return localTime.format(DateTimeFormatter.ofPattern(pattern));

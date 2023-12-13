@@ -32,6 +32,7 @@ public class MhMybatisPlusPropertiesCustomizer implements MybatisPlusPropertiesC
      */
     private void customizeConfig(MybatisPlusProperties mpProperties, MhMybatisProperties.MybatisConfig config) {
 
+        mpProperties.getGlobalConfig().setBanner(false);
         if (config.getMapperLocations() != null) {
             mpProperties.setMapperLocations(config.getMapperLocations());
         }

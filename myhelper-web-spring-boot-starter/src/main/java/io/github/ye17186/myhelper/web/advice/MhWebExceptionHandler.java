@@ -1,6 +1,7 @@
 package io.github.ye17186.myhelper.web.advice;
 
 import io.github.ye17186.myhelper.core.exception.BizException;
+import io.github.ye17186.myhelper.core.web.error.ErrorCode;
 import io.github.ye17186.myhelper.core.web.response.ApiResp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.FieldError;
@@ -35,7 +36,7 @@ public class MhWebExceptionHandler extends MhSaExceptionHandler {
 
         String errMsg = collectErrorMsg(ex);
         log.info("[业务异常] uri = {}, msg = {}", request.getRequestURI(), errMsg);
-        return ApiResp.fail(errMsg);
+        return ApiResp.fail(ErrorCode.PARAM_EX.getCode(), errMsg);
     }
 
     @ExceptionHandler(Exception.class)
