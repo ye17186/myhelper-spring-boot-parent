@@ -19,6 +19,8 @@
 - CryptoUtils新增支持MD5加密
 - 修正RSA拼写错误问题
 - 新增字符串掩码工具类 DesensitizedUtils
+#### myhelper-datasource-spring-boot-starter
+- druid版本升级 1.2.9 -> 1.2.16
 
 ### V0.0.5
 #### myhelper-core-spring-boot-starter
