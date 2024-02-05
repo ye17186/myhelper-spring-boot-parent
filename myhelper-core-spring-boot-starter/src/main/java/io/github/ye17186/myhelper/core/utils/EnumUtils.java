@@ -1,7 +1,6 @@
 package io.github.ye17186.myhelper.core.utils;
 
 import com.google.common.collect.Lists;
-import io.github.ye17186.myhelper.core.web.env.AppEnvEnum;
 
 import java.util.Arrays;
 import java.util.List;
@@ -44,13 +43,5 @@ public class EnumUtils {
             list.add(ReflectUtils.getFieldValue(e, fieldName));
         }
         return list;
-    }
-
-    public static void main(String[] args) {
-
-        AppEnvEnum a = getBy(AppEnvEnum.class, one -> one.getCode().equals("dev"));
-        System.out.println(a.toString());
-        System.out.println(getFieldValues(AppEnvEnum.class, "desc"));
-        System.out.println(ReflectUtils.getFieldValue(a, "desc"));
     }
 }

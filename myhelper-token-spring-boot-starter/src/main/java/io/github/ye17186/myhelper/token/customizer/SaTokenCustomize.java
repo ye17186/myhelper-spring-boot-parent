@@ -24,7 +24,7 @@ public class SaTokenCustomize {
         config.setTokenName(properties.getTokenName());
         config.setTokenStyle(properties.getStyle().getCode());
         config.setTimeout(properties.getTimeout());
-        config.setActivityTimeout(properties.getActivityTimeout());
+        config.setActiveTimeout(properties.getActiveTimeout());
         config.setIsReadBody(false);
         config.setIsReadCookie(false);
         config.setIsPrint(false);

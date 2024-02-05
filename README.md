@@ -19,8 +19,13 @@
 - CryptoUtils新增支持MD5加密
 - 修正RSA拼写错误问题
 - 新增字符串掩码工具类 DesensitizedUtils
+- 移除部分无用代码
 #### myhelper-datasource-spring-boot-starter
 - druid版本升级 1.2.9 -> 1.2.16
+#### myhelper-mybatis-spring-boot-starter
+- mybatis-plus版本升级 3.5.3.2 -> 3.5.5
+#### myhelper-oss-spring-boot-starter
+- aws-java-sdk-s3版本升级 1.12.444 -> 1.12.470
 
 ### V0.0.5
 #### myhelper-core-spring-boot-starter

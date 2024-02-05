@@ -12,7 +12,7 @@
     <description>Myhelper组件 - Mybatis模块</description>
 
     <properties>
-        <mybatis-plus.version>3.5.3.2</mybatis-plus.version>
+        <mybatis-plus.version>3.5.5</mybatis-plus.version>
     </properties>
 
     <dependencies>

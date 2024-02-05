@@ -32,7 +32,7 @@ public class TokenProperties {
     /**
      * TOKEN临时有效期（默认长期）
      */
-    private long activityTimeout = -1L;
+    private long activeTimeout = -1L;
 
     /**
      * 启用权限注解
