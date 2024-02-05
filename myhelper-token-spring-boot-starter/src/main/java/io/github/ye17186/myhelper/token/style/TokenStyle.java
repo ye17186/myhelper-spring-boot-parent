@@ -18,5 +18,5 @@ public enum TokenStyle {
     RANDOM128("random-128"),
     TIK("tik");
 
-    private String code;
+    private final String code;
 }
