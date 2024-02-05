@@ -19,5 +19,7 @@ public class CryptoUtils {
     /**
      * RSA加解密算法实例
      */
-    public static final RAS RAS = io.github.ye17186.myhelper.core.utils.crypto.RAS.getInstance();
+    public static final RSA RSA = io.github.ye17186.myhelper.core.utils.crypto.RSA.getInstance();
+
+    public static final MD5 MD5 = io.github.ye17186.myhelper.core.utils.crypto.MD5.getInstance();
 }

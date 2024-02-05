@@ -5,7 +5,7 @@
 <dependency>
     <groupId>io.github.ye17186</groupId>
     <artifactId>myhelper-xxx-spring-boot-starter</artifactId>
-    <version>0.0.5</version>
+    <version>0.0.6</version>
 </dependency>
 ```
 
@@ -13,6 +13,12 @@
 这里的文档待补充
 
 ## 更新日志
+
+### V0.0.6
+#### myhelper-core-spring-boot-starter
+- CryptoUtils新增支持MD5加密
+- 修正RSA拼写错误问题
+- 新增字符串掩码工具类 DesensitizedUtils
 
 ### V0.0.5
 #### myhelper-core-spring-boot-starter
