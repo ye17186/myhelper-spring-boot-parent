@@ -1,6 +1,8 @@
-package io.github.ye17186.myhelper.web.advice;
+package io.github.ye17186.myhelper.web.advice.handler;
 
 import io.github.ye17186.myhelper.core.exception.BizException;
+import io.github.ye17186.myhelper.core.utils.StringPool;
+import io.github.ye17186.myhelper.core.web.context.RequestContext;
 import io.github.ye17186.myhelper.core.web.error.ErrorCode;
 import io.github.ye17186.myhelper.core.web.response.ApiResp;
 import lombok.extern.slf4j.Slf4j;
@@ -25,8 +27,12 @@ public class MhWebExceptionHandler extends MhSaExceptionHandler {
     @ExceptionHandler(BizException.class)
     protected ApiResp<String> handleLogicException(HttpServletRequest request, BizException ex) {
 
-        log.info("[业务异常] uri = {}, code = {}, msg = {}", request.getRequestURI(), ex.getCode(), ex.getMsg(), ex);
-
+        log.info("[业务异常] traceId = {}, uri = {}, code = {}, msg = {}",
+                RequestContext.requestId(),
+                request.getRequestURI(),
+                ex.getCode(),
+                ex.getMsg(),
+                ex);
         return ApiResp.fail(ex.getCode(), ex.getMsg());
     }
 
@@ -35,14 +41,20 @@ public class MhWebExceptionHandler extends MhSaExceptionHandler {
 
 
         String errMsg = collectErrorMsg(ex);
-        log.info("[业务异常] uri = {}, msg = {}", request.getRequestURI(), errMsg);
+        log.info("[业务异常] traceId = {}, uri = {}, msg = {}",
+                RequestContext.requestId(),
+                request.getRequestURI(),
+                errMsg);
         return ApiResp.fail(ErrorCode.PARAM_EX.getCode(), errMsg);
     }
 
     @ExceptionHandler(Exception.class)
     protected ApiResp<String> handleException(HttpServletRequest request, Exception ex) {
 
-        log.error("[系统异常] uri = {}", request.getRequestURI(), ex);
+        log.error("[系统异常] traceId = {}, uri = {}",
+                RequestContext.requestId(),
+                request.getRequestURI(),
+                ex);
         return ApiResp.fail("系统异常");
     }
 
@@ -55,7 +67,7 @@ public class MhWebExceptionHandler extends MhSaExceptionHandler {
                 return error.getDefaultMessage();
             }
 
-        }).collect(Collectors.joining(", "));
+        }).collect(Collectors.joining(StringPool.COMMA_SPACE));
     }
 
     private static final String FIELD_ERROR_FORMAT = "[%s]%s";

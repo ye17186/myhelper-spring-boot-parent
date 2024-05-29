@@ -38,5 +38,5 @@ public class MhWebLoginInterceptorProperties {
     /**
      * 排查路径
      */
-    private String[] excludes = new String[]{"/login", "/doc.html", "/webjars/**", "/v3/api-docs/**"};
+    private String[] excludes = new String[]{"/doc.html", "/webjars/**", "/v3/api-docs/**", "/favicon.ico", "/error"};
 }

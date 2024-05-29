@@ -5,7 +5,7 @@
     <parent>
         <artifactId>myhelper-spring-boot-parent</artifactId>
         <groupId>io.github.ye17186</groupId>
-        <version>0.0.6</version>
+        <version>0.0.7</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -13,7 +13,7 @@
     <description>Myhelper组件 - Token模块</description>
 
     <properties>
-        <sa-token.version>1.37.0</sa-token.version>
+        <sa-token.version>1.38.0</sa-token.version>
     </properties>
 
     <dependencies>

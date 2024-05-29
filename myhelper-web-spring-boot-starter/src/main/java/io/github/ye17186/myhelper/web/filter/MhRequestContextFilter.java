@@ -1,7 +1,6 @@
 package io.github.ye17186.myhelper.web.filter;
 
 import io.github.ye17186.myhelper.core.utils.IdUtils;
-import io.github.ye17186.myhelper.core.utils.JsonUtils;
 import io.github.ye17186.myhelper.core.web.context.RequestContext;
 import io.github.ye17186.myhelper.core.web.context.RequestInfo;
 import io.github.ye17186.myhelper.web.utils.RequestUtils;
@@ -45,11 +44,8 @@ public class MhRequestContextFilter extends OncePerRequestFilter {
         } finally {
             info.setResponseTime(LocalDateTime.now());
             info.setDuration(Duration.between(info.getRequestTime(), info.getResponseTime()).toMillis());
-            if (careUri(request.getRequestURI())) {
-                if (logService != null) {
-                    logService.handle(info);
-                }
-                log.info("【=== My-Helper ===】HTTP请求完成。{}", JsonUtils.obj2Json(info));
+            if (logService != null) {
+                logService.handle(info);
             }
             RequestContext.remove();
         }
@@ -70,13 +66,5 @@ public class MhRequestContextFilter extends OncePerRequestFilter {
         request.setHttpMethod(httpRequest.getMethod());
         request.setHttpUri(httpRequest.getRequestURI());
         return request;
-    }
-
-    private boolean careUri(String uri) {
-
-        return !(uri.startsWith("/swagger")
-                || uri.startsWith("/webjars")
-                || uri.startsWith("/v3/api-docs")
-                || uri.startsWith("/druid"));
     }
 }

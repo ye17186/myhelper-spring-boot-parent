@@ -24,6 +24,7 @@ public class MhWebAsyncAutoConfiguration implements AsyncConfigurer {
         executor.setCorePoolSize(properties.getThreadPool().getCoreSize());
         executor.setMaxPoolSize(properties.getThreadPool().getMaxSize());
         executor.setThreadNamePrefix(properties.getThreadPool().getNamePrefix());
+        executor.setKeepAliveSeconds(properties.getThreadPool().getKeepAliveSeconds());
         executor.initialize();
 
         return ThreadPoolTaskExecutorWrapper.wrap(executor);

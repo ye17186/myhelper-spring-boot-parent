@@ -5,8 +5,11 @@ import io.github.ye17186.myhelper.core.web.error.ErrorCode;
 import org.springframework.util.Base64Utils;
 
 import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 
 /**
  * @author ye17186
@@ -15,7 +18,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class AES {
 
     private static final String AES_ALGORITHM = "AES"; // 默认 AES/ECB/PKCS5Padding
-    private static final String KEY = "yJ6PqL5RFDbfaQ3yBM25amp/PqWNfK+hZ+DwJFXinbA=";
+    private static final String DEFAULT_KEY = "yJ6PqL5RFDbfaQ3yBM25amp/PqWNfK+hZ+DwJFXinbA=";
 
     private AES() {}
 
@@ -29,9 +32,34 @@ public class AES {
         return new SecretKeySpec(bytes, "AES");
     }
 
+    /**
+     * 生成RSA秘钥对
+     *
+     * @return RSA秘钥对
+     */
+    public String generate() throws NoSuchAlgorithmException {
+
+        return generate(256);
+    }
+
+    /**
+     * 生成RSA秘钥对
+     *
+     * @param keySize key大小
+     * @return RSA秘钥对
+     */
+    public String generate(int keySize) throws NoSuchAlgorithmException {
+
+        KeyGenerator generator = KeyGenerator.getInstance("AES");
+        generator.init(keySize, new SecureRandom());
+
+        SecretKey key = generator.generateKey();
+        return Base64Utils.encodeToString(key.getEncoded());
+    }
+
     public String encrypt(String raw) {
 
-        return encrypt(KEY, raw);
+        return encrypt(DEFAULT_KEY, raw);
     }
 
     public String encrypt(String key, String raw) {
@@ -48,7 +76,7 @@ public class AES {
 
     public String decrypt(String raw) {
 
-        return decrypt(KEY, raw);
+        return decrypt(DEFAULT_KEY, raw);
     }
 
     public String decrypt(String key, String raw) {

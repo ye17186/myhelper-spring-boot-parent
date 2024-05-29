@@ -5,7 +5,7 @@
 <dependency>
     <groupId>io.github.ye17186</groupId>
     <artifactId>myhelper-xxx-spring-boot-starter</artifactId>
-    <version>0.0.6</version>
+    <version>0.0.7</version>
 </dependency>
 ```
 
@@ -13,6 +13,25 @@
 这里的文档待补充
 
 ## 更新日志
+### V0.0.7
+#### myhelper-core-spring-boot-starter
+- 新增密码处理相关工具类 PasswordUtils
+- 新增全局唯一请求ID BaseRequest#mhTraceId
+- IdUtils新增基于日期的唯一ID
+- CollectionUtils支持对数组进行判空
+- 新增密码工具类，并支持基于zxcvbn的密码强度预估
+- SpringBoot默认线程池支持`keepAliveSeconds`参数，核心线程数、最大线程数默认值分别修改为`1`、`200`
+- guava版本升级 `31.1-jre` -> `33.2.0-jre`
+- easyexcel版本升级 `3.3.2` -> `3.3.4`
+#### myhelper-web-spring-boot-starter
+- 系统日志模块升级，可参考：MhWebApiAdviceAUtoConfiguration
+- 移动多个增强Handler的包
+#### myhelper-mybatis-spring-boot-starter
+- mybatis-plus版本升级 `3.5.5` -> `3.5.6`
+#### myhelper-token-spring-boot-starter
+- sa-token版本升级 `1.37.0` -> `1.38.0`
+#### myhelper-knife4j-spring-boot-starter
+- knife4j版本升级 `4.3.0` -> `4.5.0`
 
 ### V0.0.6
 #### myhelper-core-spring-boot-starter

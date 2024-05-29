@@ -6,7 +6,7 @@
 
     <groupId>io.github.ye17186</groupId>
     <artifactId>myhelper-spring-boot-parent</artifactId>
-    <version>0.0.6</version>
+    <version>0.0.7</version>
     <packaging>pom</packaging>
     <name>myhelper-spring-boot-parent</name>
     <description>a web application starter collection</description>
@@ -58,7 +58,7 @@
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
 
         <spring-boot.version>2.7.15</spring-boot.version>
-        <my-helper.version>0.0.6</my-helper.version>
+        <my-helper.version>0.0.7</my-helper.version>
 
         <!--    冲突管理    -->
         <checker-qual.version>3.19.0</checker-qual.version>

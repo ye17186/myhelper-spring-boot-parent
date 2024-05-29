@@ -40,4 +40,9 @@ public class MhWebProperties {
      * 跨域
      */
     private MhWebCorsProperties cors = new MhWebCorsProperties();
+
+    /**
+     * API增强
+     */
+    private MhWebApiAdviceProperties apiAdvice = new MhWebApiAdviceProperties();
 }

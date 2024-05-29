@@ -1,6 +1,7 @@
 package io.github.ye17186.myhelper.mybatis.utils;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Lists;
 import io.github.ye17186.myhelper.core.web.request.PageRequest;

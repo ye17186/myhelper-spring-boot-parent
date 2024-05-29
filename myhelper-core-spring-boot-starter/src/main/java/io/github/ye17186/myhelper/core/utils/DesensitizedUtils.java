@@ -3,7 +3,7 @@ package io.github.ye17186.myhelper.core.utils;
 /**
  * 数据脱敏工具类
  *
- * @author yemeng20
+ * @author ye17186
  * @date 2023/12/27
  */
 public class DesensitizedUtils {

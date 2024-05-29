@@ -1,6 +1,7 @@
 package io.github.ye17186.myhelper.web.interceptor.login;
 
 import io.github.ye17186.myhelper.core.utils.SpringUtils;
+import io.github.ye17186.myhelper.core.web.context.RequestContext;
 import io.github.ye17186.myhelper.core.web.context.user.MhContextUser;
 import io.github.ye17186.myhelper.core.web.context.user.MhUserContext;
 import io.github.ye17186.myhelper.core.web.error.ErrorCode;
@@ -63,7 +64,9 @@ public class MhLoginInterceptor extends MhInterceptor {
             return true;
         }
 
+
         boolean isLogin = mhTokenService.isLogin();
+        log.trace("[MyHelper - Interceptor] 登录拦截器校验。当前用户登录信息是否有效: {}", isLogin);
 
         if (isLogin) {
             LoginKey key = mhTokenService.getLoginKey();
@@ -77,6 +80,11 @@ public class MhLoginInterceptor extends MhInterceptor {
 
 
         if (!isLogin) {
+            log.info("[业务异常] traceId = {}, code = {}, msg = {}, uri = {}",
+                    RequestContext.requestId(),
+                    ErrorCode.NO_LOGIN.getCode(),
+                    ErrorCode.NO_LOGIN.getMsg(),
+                    request.getRequestURI());
             ApiResp<String> resp = ApiResp.fail(ErrorCode.NO_LOGIN);
             writeResp(request, response, resp);
         }

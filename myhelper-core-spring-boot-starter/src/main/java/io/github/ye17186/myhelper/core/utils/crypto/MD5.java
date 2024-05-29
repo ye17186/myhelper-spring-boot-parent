@@ -1,6 +1,6 @@
 package io.github.ye17186.myhelper.core.utils.crypto;
 
-import org.springframework.util.Base64Utils;
+import org.springframework.util.DigestUtils;
 
 /**
  * @author ye17186
@@ -16,14 +16,8 @@ public class MD5 {
         return new MD5();
     }
 
-    public String encrypt(String raw) {
+    public String digest(String raw) {
 
-        return Base64Utils.encodeToString(raw.getBytes());
-    }
-
-    public String encrypt(String raw, String slat) {
-
-        String s = Base64Utils.encodeToString(raw.getBytes()) + Base64Utils.encodeToString(slat.getBytes());
-        return Base64Utils.encodeToString(s.getBytes());
+        return DigestUtils.md5DigestAsHex(raw.getBytes());
     }
 }

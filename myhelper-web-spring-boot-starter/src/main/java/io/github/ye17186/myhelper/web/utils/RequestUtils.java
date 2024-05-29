@@ -1,8 +1,11 @@
 package io.github.ye17186.myhelper.web.utils;
 
 import io.github.ye17186.myhelper.core.utils.StringUtils;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 /**
  * @author ye17186
@@ -51,5 +54,12 @@ public class RequestUtils {
             XFor = request.getRemoteAddr();
         }
         return XFor;
+    }
+
+    public static HttpServletRequest getHttpRequest() {
+
+        return Optional.ofNullable(((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()))
+                .map(ServletRequestAttributes::getRequest)
+                .orElse(null);
     }
 }

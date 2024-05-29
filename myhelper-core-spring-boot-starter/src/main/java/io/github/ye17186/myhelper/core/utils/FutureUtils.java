@@ -43,7 +43,7 @@ public class FutureUtils {
         try {
             result = future.get(timeout, TimeUnit.SECONDS);
         } catch (Exception e) {
-            log.warn("[ET] 获取异步结果异常.", e);
+            log.warn("[My-Helper] 获取异步结果异常.", e);
         }
         return result;
     }
