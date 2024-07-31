@@ -17,6 +17,7 @@ public enum ErrorCode implements IErrorEnum {
     NO_LOGIN(996, "未登录"),
     OSS_EX(995, "OSS异常"),
     PARAM_EX(994, "参数校验不通过"),
+    API_FAIL(994, "接口认证不通过")
     ;
 
     /**

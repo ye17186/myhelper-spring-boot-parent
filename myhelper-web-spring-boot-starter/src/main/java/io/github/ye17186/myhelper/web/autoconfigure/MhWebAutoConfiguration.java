@@ -5,6 +5,7 @@ import io.github.ye17186.myhelper.core.event.EventPublisher;
 import io.github.ye17186.myhelper.web.advice.handler.MhWebExceptionHandler;
 import io.github.ye17186.myhelper.web.autoconfigure.properties.MhWebProperties;
 import io.github.ye17186.myhelper.web.filter.DefaultRequestLogService;
+import io.github.ye17186.myhelper.web.filter.MhRequestBodyFilter;
 import io.github.ye17186.myhelper.web.filter.MhRequestContextFilter;
 import io.github.ye17186.myhelper.web.filter.RequestLogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 @Import({
         MhWebCorsAutoConfiguration.class,
         MhWebExceptionHandler.class,
+        MhWebApiAuthInterceptorAutoConfiguration.class,
         MhWebLoginInterceptorAutoConfiguration.class,
         MhWebAsyncAutoConfiguration.class,
         MhWebApiAdviceAutoConfiguration.class})
@@ -40,6 +42,12 @@ public class MhWebAutoConfiguration {
     public RequestLogService mhRequestLogService() {
 
         return new DefaultRequestLogService();
+    }
+
+    @Bean
+    public MhRequestBodyFilter mhRequestBodyFilter() {
+
+        return new MhRequestBodyFilter();
     }
 
     @Bean

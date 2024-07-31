@@ -25,14 +25,19 @@ public class TokenProperties {
     private TokenStyle style = TokenStyle.RANDOM64;
 
     /**
-     * TOKEN有效期（默认30天）
+     * TOKEN有效期（默认7天，单：位秒）
      */
-    private long timeout = 2592000L;
+    private long timeout = 7 * 24 * 3600;
 
     /**
-     * TOKEN临时有效期（默认长期）
+     * TOKEN最低活跃频率（单位：秒，-1 = 不限制）
      */
     private long activeTimeout = -1L;
+
+    /**
+     * 是否自动续期
+     */
+    private boolean antoRenew = true;
 
     /**
      * 启用权限注解

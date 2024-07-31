@@ -9,11 +9,14 @@ import io.github.ye17186.myhelper.core.oss.template.MhOssTemplate;
 import io.github.ye17186.myhelper.core.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 
 import java.io.InputStream;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Optional;
 
 /**
  * AWS对象存储服务
@@ -25,9 +28,12 @@ import java.util.Date;
 public class MhAwsService implements MhOssTemplate {
 
     private final AmazonS3 client;
+    private final AmazonS3 proxyClient;
 
-    public MhAwsService(AmazonS3 client) {
+    public MhAwsService(AmazonS3 client, @Nullable AmazonS3 proxyClient) {
+
         this.client = client;
+        this.proxyClient = Optional.ofNullable(proxyClient).orElse(client);
     }
 
     @Override
@@ -48,7 +54,7 @@ public class MhAwsService implements MhOssTemplate {
         OssPutResult result = new OssPutResult(bucket, objKey);
         long start = System.currentTimeMillis();
         try {
-            log.info("[My-Helper][OSS] 上传文件到OSS开始。bucket：{}，objKey:{}", bucket, objKey);
+            log.info("[MyHelper][OSS] 上传文件到OSS开始。bucket：{}，objKey:{}", bucket, objKey);
 
             ObjectMetadata metadata = new ObjectMetadata();
             metadata.setContentLength(stream.available());
@@ -56,11 +62,11 @@ public class MhAwsService implements MhOssTemplate {
             PutObjectRequest request = new PutObjectRequest(bucket, objKey, stream, metadata);
             client.putObject(request);
         } catch (Exception e) {
-            log.info("[My-Helper][OSS] 上传文件异常。", e);
+            log.info("[MyHelper][OSS] 上传文件异常。", e);
             result.setSuccess(false);
         } finally {
             result.setDuration(System.currentTimeMillis() - start);
-            log.info("[My-Helper][OSS] 上传文件结束。结果：{}", JsonUtils.obj2Json(result));
+            log.info("[MyHelper][OSS] 上传文件结束。结果：{}", JsonUtils.obj2Json(result));
         }
         return result;
     }
@@ -75,11 +81,11 @@ public class MhAwsService implements MhOssTemplate {
             S3Object response = client.getObject(request);
             result.setInputStream(response.getObjectContent());
         } catch (Exception e) {
-            log.info("[My-Helper][OSS] 获取文件流异常。", e);
+            log.info("[MyHelper][OSS] 获取文件流异常。", e);
             result.setSuccess(false);
         } finally {
             result.setDuration(System.currentTimeMillis() - start);
-            log.info("[My-Helper][OSS] 获取文件流结束。结果：{}", JsonUtils.obj2Json(result));
+            log.info("[MyHelper][OSS] 获取文件流结束。结果：{}", JsonUtils.obj2Json(result));
         }
         return result;
     }
@@ -87,39 +93,58 @@ public class MhAwsService implements MhOssTemplate {
     @Override
     public OssUrlResult getUrl(String bucket, String objKey) {
 
-        OssUrlResult result = new OssUrlResult(bucket, objKey);
-        long start = System.currentTimeMillis();
-        try {
-            URL url = client.getUrl(bucket, objKey);
-            result.setUrl(url.toString());
-        } catch (Exception e) {
-            log.info("[My-Helper][OSS] 获取文件URL异常。", e);
-            result.setSuccess(false);
-        } finally {
-            result.setDuration(System.currentTimeMillis() - start);
-            log.info("[My-Helper][OSS] 获取文件URL结束。结果：{}", JsonUtils.obj2Json(result));
-        }
-        return result;
+        return doGetUrl(bucket, objKey, -1, false);
+    }
+
+    @Override
+    public OssUrlResult getProxyUrl(String bucket, String objKey) {
+
+        return doGetUrl(bucket, objKey, -1, true);
     }
 
     @Override
     public OssUrlResult getUrl(String bucket, String objKey, int expire) {
 
+        return doGetUrl(bucket, objKey, expire, false);
+    }
+
+    @Override
+    public OssUrlResult getProxyUrl(String bucket, String objKey, int expire) {
+
+        return doGetUrl(bucket, objKey, expire, true);
+    }
+
+    private OssUrlResult doGetUrl(String bucket, String objKey, int expire, boolean isProxy) {
+
         OssUrlResult result = new OssUrlResult(bucket, objKey);
         long start = System.currentTimeMillis();
         try {
             GeneratePresignedUrlRequest request = new GeneratePresignedUrlRequest(bucket, objKey);
-            URL url =
-                    client.generatePresignedUrl(request.withExpiration(new Date((System.currentTimeMillis() + expire * 1000L))));
+
+            AmazonS3 targetClient = getTargetClient(isProxy);
+            URL url;
+            if (expire > 0) {
+                url = targetClient.generatePresignedUrl(request.withExpiration(new Date((System.currentTimeMillis() + expire * 1000L))));
+                result.setExpiredAt(LocalDateTime.now().plusSeconds(expire));
+            } else {
+                url = targetClient.getUrl(bucket, objKey);
+            }
+
             result.setUrl(url.toString());
-            result.setExpiredAt(LocalDateTime.now().plusSeconds(expire));
+
         } catch (Exception e) {
-            log.info("[My-Helper][OSS] 获取文件URL异常。", e);
+            log.info("[MyHelper][OSS] 获取文件URL异常。", e);
             result.setSuccess(false);
         } finally {
             result.setDuration(System.currentTimeMillis() - start);
-            log.info("[My-Helper][OSS] 获取文件URL结束。结果：{}", JsonUtils.obj2Json(result));
+            log.info("[MyHelper][OSS] 获取文件URL结束。结果：{}", JsonUtils.obj2Json(result));
         }
         return result;
+    }
+
+    @NonNull
+    private AmazonS3 getTargetClient(boolean isProxy) {
+
+        return isProxy ? proxyClient : client;
     }
 }

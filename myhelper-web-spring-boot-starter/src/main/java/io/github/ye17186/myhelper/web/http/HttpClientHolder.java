@@ -5,7 +5,7 @@ import com.alibaba.ttl.TransmittableThreadLocal;
 /**
  * HTTP客户端配置
  *
- * @author yemeng20
+ * @author ye17186
  * @date 2024/6/19
  */
 public class HttpClientHolder {

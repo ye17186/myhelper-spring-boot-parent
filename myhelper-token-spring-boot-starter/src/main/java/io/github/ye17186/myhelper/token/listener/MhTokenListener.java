@@ -35,11 +35,11 @@ public abstract class MhTokenListener extends SaTokenListenerForSimple {
     public final void doLogin(String loginType, Object loginId, String tokenValue, SaLoginModel loginModel) {
 
         LoginKey key = LoginKey.decode(String.valueOf(loginId));
-        log.info("[My-Helper][token] 用户登录。{}", JsonUtils.obj2Json(key));
+        log.info("[MyHelper][token] 用户登录。{}", JsonUtils.obj2Json(key));
         try {
             login(key, tokenValue);
         } catch (Exception e) {
-            log.warn("[My-Helper][token] 用户登录。处理异常。", e);
+            log.warn("[MyHelper][token] 用户登录。处理异常。", e);
         }
     }
 
@@ -47,11 +47,11 @@ public abstract class MhTokenListener extends SaTokenListenerForSimple {
     public final void doLogout(String loginType, Object loginId, String tokenValue) {
 
         LoginKey key = LoginKey.decode(String.valueOf(loginId));
-        log.info("[My-Helper][token] 用户登出。{}", JsonUtils.obj2Json(key));
+        log.info("[MyHelper][token] 用户登出。{}", JsonUtils.obj2Json(key));
         try {
             logout(key, tokenValue);
         } catch (Exception e) {
-            log.warn("[My-Helper][token] 用户登出。处理异常。", e);
+            log.warn("[MyHelper][token] 用户登出。处理异常。", e);
         }
     }
 }

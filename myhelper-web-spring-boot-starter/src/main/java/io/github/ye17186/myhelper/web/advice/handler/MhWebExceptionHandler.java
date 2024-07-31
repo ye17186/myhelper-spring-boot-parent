@@ -6,6 +6,7 @@ import io.github.ye17186.myhelper.core.web.context.RequestContext;
 import io.github.ye17186.myhelper.core.web.error.ErrorCode;
 import io.github.ye17186.myhelper.core.web.response.ApiResp;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -48,6 +49,18 @@ public class MhWebExceptionHandler extends MhSaExceptionHandler {
         return ApiResp.fail(ErrorCode.PARAM_EX.getCode(), errMsg);
     }
 
+    @ExceptionHandler(BindException.class)
+    protected ApiResp<String> handleArgsException(HttpServletRequest request, BindException ex) {
+
+
+        String errMsg = collectErrorMsg(ex);
+        log.info("[业务异常] traceId = {}, uri = {}, msg = {}",
+                RequestContext.requestId(),
+                request.getRequestURI(),
+                errMsg);
+        return ApiResp.fail(ErrorCode.PARAM_EX.getCode(), errMsg);
+    }
+
     @ExceptionHandler(Exception.class)
     protected ApiResp<String> handleException(HttpServletRequest request, Exception ex) {
 
@@ -59,6 +72,18 @@ public class MhWebExceptionHandler extends MhSaExceptionHandler {
     }
 
     private String collectErrorMsg(MethodArgumentNotValidException ex) {
+
+        return ex.getBindingResult().getAllErrors().stream().map(error -> {
+            if (error instanceof FieldError) {
+                return String.format(FIELD_ERROR_FORMAT, ((FieldError) error).getField(), error.getDefaultMessage());
+            } else {
+                return error.getDefaultMessage();
+            }
+
+        }).collect(Collectors.joining(StringPool.COMMA_SPACE));
+    }
+
+    private String collectErrorMsg(BindException ex) {
 
         return ex.getBindingResult().getAllErrors().stream().map(error -> {
             if (error instanceof FieldError) {

@@ -8,6 +8,7 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
@@ -17,7 +18,7 @@ import java.security.SecureRandom;
  */
 public class AES {
 
-    private static final String AES_ALGORITHM = "AES"; // 默认 AES/ECB/PKCS5Padding
+    private static final String AES_ALGORITHM = "AES/ECB/PKCS5Padding"; // 默认 AES/ECB/PKCS5Padding
     private static final String DEFAULT_KEY = "yJ6PqL5RFDbfaQ3yBM25amp/PqWNfK+hZ+DwJFXinbA=";
 
     private AES() {}
@@ -43,10 +44,10 @@ public class AES {
     }
 
     /**
-     * 生成RSA秘钥对
+     * 生成AES秘钥对
      *
      * @param keySize key大小
-     * @return RSA秘钥对
+     * @return AES秘钥对
      */
     public String generate(int keySize) throws NoSuchAlgorithmException {
 
@@ -54,6 +55,7 @@ public class AES {
         generator.init(keySize, new SecureRandom());
 
         SecretKey key = generator.generateKey();
+        System.out.println(new String(key.getEncoded(), StandardCharsets.UTF_8));
         return Base64Utils.encodeToString(key.getEncoded());
     }
 

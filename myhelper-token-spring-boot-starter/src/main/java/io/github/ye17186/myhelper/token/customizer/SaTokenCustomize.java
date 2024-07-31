@@ -25,6 +25,7 @@ public class SaTokenCustomize {
         config.setTokenStyle(properties.getStyle().getCode());
         config.setTimeout(properties.getTimeout());
         config.setActiveTimeout(properties.getActiveTimeout());
+        config.setAutoRenew(properties.isAntoRenew());
         config.setIsReadBody(false);
         config.setIsReadCookie(false);
         config.setIsPrint(false);

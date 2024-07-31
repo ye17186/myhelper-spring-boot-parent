@@ -26,21 +26,20 @@ public class MhWebApiAdviceAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(SysLogService.class)
-    @ConditionalOnProperty(name = "spring.my-helper.web.api-advice.log-enabled", havingValue = "true", matchIfMissing = true)
     public SysLogService mhSysLogService() {
 
         return new DefaultSysLogService();
     }
 
     @Bean
-    @ConditionalOnProperty(name = "spring.my-helper.web.api-advice.log-enabled", havingValue = "true", matchIfMissing = true)
-    public SysLogAspect sysLogAspect(SysLogService service) {
+    public SysLogAspect sysLogAspect(@Autowired SysLogService service) {
 
         return new SysLogAspect(properties.getApiAdvice(), service);
     }
 
     @Bean
-    public DefaultPointcutAdvisor apiPointcutAdvisor(@Autowired(required = false) SysLogService service) {
+    @ConditionalOnProperty(name = "spring.my-helper.web.api-advice.log-enabled", havingValue = "true", matchIfMissing = true)
+    public DefaultPointcutAdvisor apiPointcutAdvisor(@Autowired SysLogService service) {
 
         AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
         pointcut.setExpression(properties.getApiAdvice().getExpression());

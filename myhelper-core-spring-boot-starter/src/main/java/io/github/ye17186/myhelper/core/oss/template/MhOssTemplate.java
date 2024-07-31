@@ -8,7 +8,6 @@ import java.io.InputStream;
 
 /**
  * @author ye17186
- * @date 2023-04-11
  */
 public interface MhOssTemplate {
 
@@ -45,6 +44,15 @@ public interface MhOssTemplate {
     OssUrlResult getUrl(String bucket, String objKey);
 
     /**
+     * 获取永久URL（外网代理URL）
+     * 注意：此方法必须提前将bucket设置为public
+     *
+     * @param bucket 桶
+     * @param objKey 对象key
+     */
+    OssUrlResult getProxyUrl(String bucket, String objKey);
+
+    /**
      * 获取签名URL
      *
      * @param bucket 桶
@@ -52,4 +60,13 @@ public interface MhOssTemplate {
      * @param expire 有效时间，单位秒，minio最大支持7天
      */
     OssUrlResult getUrl(String bucket, String objKey, int expire);
+
+    /**
+     * 获取签名URL（外网代理URL）
+     *
+     * @param bucket 桶
+     * @param objKey 文件key
+     * @param expire 有效时间，单位秒，minio最大支持7天
+     */
+    OssUrlResult getProxyUrl(String bucket, String objKey, int expire);
 }

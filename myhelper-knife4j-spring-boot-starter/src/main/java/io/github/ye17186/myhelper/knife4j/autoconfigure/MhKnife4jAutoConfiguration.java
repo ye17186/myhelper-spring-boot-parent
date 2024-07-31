@@ -3,6 +3,7 @@ package io.github.ye17186.myhelper.knife4j.autoconfigure;
 import io.github.ye17186.myhelper.knife4j.converter.EnumSchemaConverter;
 import io.github.ye17186.myhelper.knife4j.customizer.KnifeExtOpenApiCustomizer;
 import io.github.ye17186.myhelper.knife4j.autoconfigure.properties.MhKnife4jProperties;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Bean;
  * @author ye17186
  * @since 2023-02-08
  */
+@Slf4j
 @AutoConfiguration
 @EnableConfigurationProperties(MhKnife4jProperties.class)
 public class MhKnife4jAutoConfiguration {
@@ -18,7 +20,9 @@ public class MhKnife4jAutoConfiguration {
     @Bean
     public KnifeExtOpenApiCustomizer knifeExtOpenApiCustomizer(MhKnife4jProperties properties) {
 
-        return new KnifeExtOpenApiCustomizer(properties);
+        KnifeExtOpenApiCustomizer customizer = new KnifeExtOpenApiCustomizer(properties);
+        log.info("【MyHelper】【Knife4j】初始化成功.");
+        return customizer;
     }
 
     @Bean

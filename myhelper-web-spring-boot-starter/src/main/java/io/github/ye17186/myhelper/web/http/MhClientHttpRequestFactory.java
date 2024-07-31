@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 
 /**
- * @author yemeng20
+ * @author ye17186
  * @date 2024/6/19
  */
 public class MhClientHttpRequestFactory extends SimpleClientHttpRequestFactory {

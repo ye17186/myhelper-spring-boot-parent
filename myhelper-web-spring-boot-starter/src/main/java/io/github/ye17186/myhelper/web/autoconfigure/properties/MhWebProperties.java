@@ -32,7 +32,12 @@ public class MhWebProperties {
     private MhWebAsyncProperties threadPool = new MhWebAsyncProperties();
 
     /**
-     * 登录拦截器
+     * API鉴权拦截器
+     */
+    private MhWebApiAuthProperties apiAuthInterceptor = new MhWebApiAuthProperties();
+
+    /**
+     * 登录拦截器组
      */
     private List<MhWebLoginInterceptorProperties> loginInterceptors = Lists.newArrayList();
 

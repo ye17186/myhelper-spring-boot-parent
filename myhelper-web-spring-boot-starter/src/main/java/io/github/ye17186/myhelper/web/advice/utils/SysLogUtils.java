@@ -9,6 +9,7 @@ import io.github.ye17186.myhelper.web.advice.model.SysLogModel;
 import io.github.ye17186.myhelper.web.annotation.SysLogPoint;
 import io.github.ye17186.myhelper.web.aspect.log.LogTarget;
 import org.aopalliance.intercept.MethodInvocation;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.aspectj.lang.JoinPoint;
 import org.springframework.lang.NonNull;
 
@@ -119,7 +120,8 @@ public class SysLogUtils {
      * @return 处理后的异常信息
      */
     private static String handleException(Throwable ex) {
-        return ex == null ? null : ex.toString();
+
+        return ex == null ? null : ExceptionUtils.getStackTrace(ex);
     }
 
 
@@ -137,7 +139,7 @@ public class SysLogUtils {
                 while (iterator.hasNext()) {
                     Map.Entry<String, JsonNode> entry = iterator.next();
                     if (sensitive.contains(entry.getKey())) {
-                        entry.setValue(TextNode.valueOf("*****"));
+                        entry.setValue(TextNode.valueOf("[*****]"));
                     }
                 }
             }

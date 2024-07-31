@@ -1,6 +1,8 @@
 package io.github.ye17186.myhelper.web.utils;
 
 import io.github.ye17186.myhelper.core.utils.StringUtils;
+import io.github.ye17186.myhelper.web.servlet.RepeatableHttpServletRequestWrapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -11,6 +13,7 @@ import java.util.Optional;
  * @author ye17186
  * @since 2022-10-13
  */
+@Slf4j
 public class RequestUtils {
 
     public static String getClientIp(HttpServletRequest request) {
@@ -61,5 +64,16 @@ public class RequestUtils {
         return Optional.ofNullable(((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()))
                 .map(ServletRequestAttributes::getRequest)
                 .orElse(null);
+    }
+
+    public static String getRequestBody(HttpServletRequest request) {
+
+        String body = null;
+        if (request instanceof RepeatableHttpServletRequestWrapper) {
+            body = ((RepeatableHttpServletRequestWrapper) request).getRequestBody();
+        } else {
+            throw new RuntimeException("can not read the requestBody by this method");
+        }
+        return body;
     }
 }

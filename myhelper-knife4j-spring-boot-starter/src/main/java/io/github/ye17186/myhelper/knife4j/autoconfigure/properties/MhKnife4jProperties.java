@@ -16,12 +16,12 @@ public class MhKnife4jProperties {
     /**
      * 文档标题
      */
-    private String title = "【My-Helper】在线接口文档";
+    private String title = "【MyHelper】在线接口文档";
 
     /**
      * 文档描述
      */
-    private String description = "【My-Helper】在线接口文档";
+    private String description = "【MyHelper】在线接口文档";
 
     /**
      * 作者

@@ -70,19 +70,27 @@ public class MhTokenService {
 
     /**
      * 获取当前用户的角色码集合
-     *
-     * @return
      */
     public List<String> roles() {
 
         return StpUtil.getRoleList();
     }
 
+    /**
+     * 判断当前用户是否拥有指定权限
+     *
+     * @param permission 权限码
+     */
     public boolean hasPermission(String permission) {
 
         return StpUtil.hasPermission(permission);
     }
 
+    /**
+     * 判断当前用户是否拥有指定角色
+     *
+     * @param role 角色码
+     */
     public boolean hasRole(String role) {
 
         return StpUtil.hasRole(role);
