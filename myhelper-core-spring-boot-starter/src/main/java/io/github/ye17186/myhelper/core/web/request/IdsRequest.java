@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.List;
 
 
 /**
@@ -17,8 +19,9 @@ public class IdsRequest extends BaseRequest {
     private static final long serialVersionUID = -1L;
 
     /**
-     * 业务ID
+     * 业务ID集合
      */
     @NotNull
-    private Long id;
+    @Size(min = 1)
+    private List<Long> ids;
 }

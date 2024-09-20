@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 选项响应（用于支持前端的下拉选择组件）
@@ -41,4 +42,9 @@ public class OptionResponse<T> implements Serializable {
      * 扩展属性3
      */
     private String extAttr3;
+
+    /**
+     * 子项
+     */
+    private List<OptionResponse<T>> children;
 }
