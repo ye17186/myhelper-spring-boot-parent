@@ -7,7 +7,7 @@ import io.github.ye17186.myhelper.core.utils.StringUtils;
 import io.github.ye17186.myhelper.core.utils.crypto.CryptoUtils;
 import io.github.ye17186.myhelper.core.web.error.ErrorCode;
 import io.github.ye17186.myhelper.core.web.response.ApiResp;
-import io.github.ye17186.myhelper.web.autoconfigure.properties.MhWebApiAuthProperties;
+import io.github.ye17186.myhelper.web.autoconfigure.properties.MhWebApiAuthInterceptorProperties;
 import io.github.ye17186.myhelper.web.interceptor.MhInterceptor;
 import io.github.ye17186.myhelper.web.utils.RequestUtils;
 import lombok.Builder;
@@ -27,9 +27,9 @@ import java.util.TreeMap;
 @Slf4j
 public class MhApiAuthInterceptor extends MhInterceptor {
 
-    private final MhWebApiAuthProperties properties;
+    private final MhWebApiAuthInterceptorProperties properties;
 
-    public MhApiAuthInterceptor(MhWebApiAuthProperties properties) {
+    public MhApiAuthInterceptor(MhWebApiAuthInterceptorProperties properties) {
         this.properties = properties;
     }
 

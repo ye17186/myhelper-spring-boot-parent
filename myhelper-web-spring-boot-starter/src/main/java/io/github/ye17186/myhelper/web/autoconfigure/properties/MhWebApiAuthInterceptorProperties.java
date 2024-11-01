@@ -1,5 +1,6 @@
 package io.github.ye17186.myhelper.web.autoconfigure.properties;
 
+import io.github.ye17186.myhelper.web.consts.MhWebConstants;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +13,7 @@ import javax.validation.constraints.NotEmpty;
  */
 @Setter
 @Getter
-public class MhWebApiAuthProperties {
+public class MhWebApiAuthInterceptorProperties {
 
     /**
      * 启用API接口鉴权
@@ -22,7 +23,7 @@ public class MhWebApiAuthProperties {
     /**
      * Header参数前缀
      */
-    private String headerPrefix = "My-Helper";
+    private String headerPrefix = MhWebConstants.MH_PREFIX;
 
     /**
      * 签名秘钥

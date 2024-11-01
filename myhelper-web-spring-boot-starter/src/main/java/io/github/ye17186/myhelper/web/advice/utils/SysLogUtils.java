@@ -21,7 +21,6 @@ import java.util.Map;
 
 /**
  * @author ye17186
- * @date 2024/5/29
  */
 public class SysLogUtils {
 
@@ -49,7 +48,7 @@ public class SysLogUtils {
         sysLog.setMethod(invocation.getMethod().getName());
         sysLog.setStatus(ex == null ? SUCCESS : FAIL);
         sysLog.setInput(handleInput(invocation.getArguments(), Arrays.asList(point.sensitiveParams()), point.ignoreInput()));
-        sysLog.setOutput(handleOutput(result, point.ignoreOutput()));
+        sysLog.setOutput(handleOutput(result, Arrays.asList(point.sensitiveParams()), point.ignoreOutput()));
         sysLog.setExMsg(handleException(ex));
         sysLog.setStartTime(start);
         return sysLog;
@@ -75,7 +74,7 @@ public class SysLogUtils {
         sysLog.setMethod(jp.getSignature().getName());
         sysLog.setStatus(ex == null ? SUCCESS : FAIL);
         sysLog.setInput(handleInput(jp.getArgs(), Arrays.asList(annotation.sensitiveParams()), annotation.ignoreInput()));
-        sysLog.setOutput(handleOutput(result, annotation.ignoreOutput()));
+        sysLog.setOutput(handleOutput(result, Arrays.asList(annotation.sensitiveParams()), annotation.ignoreOutput()));
         sysLog.setExMsg(handleException(ex));
         sysLog.setStartTime(start);
         return sysLog;
@@ -104,13 +103,21 @@ public class SysLogUtils {
     /**
      * 处理输出结果
      *
-     * @param result 源输出结果
-     * @param ignore 是否忽略结果
+     * @param result          源输出结果
+     * @param sensitiveParams 敏感参数关键字
+     * @param ignore          是否忽略结果
      * @return 处理后的输出结果
      */
-    private static Object handleOutput(Object result, boolean ignore) {
+    private static Object handleOutput(Object result, List<String> sensitiveParams, boolean ignore) {
 
-        return (ignore || result == null) ? null : result;
+        if (ignore || result == null) {
+            return null;
+        }
+        JsonNode source = JsonUtils.json2Obj(JsonUtils.obj2Json(result), JsonNode.class);
+        if (CollectionUtils.isNotEmpty(sensitiveParams)) {
+            handleSensitiveParams(source, sensitiveParams);
+        }
+        return source;
     }
 
     /**

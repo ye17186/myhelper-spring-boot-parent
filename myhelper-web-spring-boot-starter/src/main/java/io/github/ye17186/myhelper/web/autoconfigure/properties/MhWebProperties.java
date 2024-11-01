@@ -32,9 +32,14 @@ public class MhWebProperties {
     private MhWebAsyncProperties threadPool = new MhWebAsyncProperties();
 
     /**
+     * RequestTrace拦截器
+     */
+    private MhWebRequestTraceInterceptorProperties requestTraceInterceptor = new MhWebRequestTraceInterceptorProperties();
+
+    /**
      * API鉴权拦截器
      */
-    private MhWebApiAuthProperties apiAuthInterceptor = new MhWebApiAuthProperties();
+    private MhWebApiAuthInterceptorProperties apiAuthInterceptor = new MhWebApiAuthInterceptorProperties();
 
     /**
      * 登录拦截器组

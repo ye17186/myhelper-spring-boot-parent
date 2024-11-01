@@ -1,12 +1,14 @@
 package io.github.ye17186.myhelper.web.autoconfigure;
 
-import io.github.ye17186.myhelper.core.async.ThreadPoolTaskExecutorWrapper;
+import com.alibaba.ttl.threadpool.TtlExecutors;
 import io.github.ye17186.myhelper.web.autoconfigure.properties.MhWebProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
+import java.util.concurrent.Executor;
 
 /**
  * @author ye17186
@@ -20,7 +22,7 @@ public class MhWebAsyncAutoConfiguration implements AsyncConfigurer {
     private MhWebProperties properties;
 
     @Override
-    public ThreadPoolTaskExecutor getAsyncExecutor() {
+    public Executor getAsyncExecutor() {
 
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(properties.getThreadPool().getCoreSize());
@@ -30,6 +32,6 @@ public class MhWebAsyncAutoConfiguration implements AsyncConfigurer {
         executor.initialize();
 
         log.info("【MyHelper】【Web】 异步线程池增强执行器注册完成.");
-        return ThreadPoolTaskExecutorWrapper.wrap(executor);
+        return TtlExecutors.getTtlExecutor(executor);
     }
 }
