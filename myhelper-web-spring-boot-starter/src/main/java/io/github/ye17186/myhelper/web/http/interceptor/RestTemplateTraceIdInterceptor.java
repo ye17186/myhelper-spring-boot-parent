@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * RestTemplate TraceId请求头拦截器
  *
- * @author yemeng20
+ * @author ye17186
  */
 public class RestTemplateTraceIdInterceptor implements ClientHttpRequestInterceptor {
 

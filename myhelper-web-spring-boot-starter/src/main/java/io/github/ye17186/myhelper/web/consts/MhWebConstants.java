@@ -1,7 +1,7 @@
 package io.github.ye17186.myhelper.web.consts;
 
 /**
- * @author yemeng20
+ * @author ye17186
  */
 public class MhWebConstants {
 

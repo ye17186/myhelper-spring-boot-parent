@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.Map;
 
 /**
- * @author yemeng20
+ * @author ye17186
  */
 public class TtlLogbackMDCAdapter implements MDCAdapter {
     private static final TtlLogbackMDCAdapter ttlAdapter;
