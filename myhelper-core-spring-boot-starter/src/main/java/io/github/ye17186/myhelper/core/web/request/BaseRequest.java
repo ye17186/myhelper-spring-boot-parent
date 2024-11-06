@@ -13,9 +13,4 @@ import java.io.Serializable;
 @Getter
 public class BaseRequest implements Serializable {
     private static final long serialVersionUID = 7233240108648255859L;
-
-    /**
-     * MyHelper框架请求唯一TraceId
-     */
-    private String traceId;
 }

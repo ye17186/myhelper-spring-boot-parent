@@ -1,8 +1,5 @@
 package io.github.ye17186.myhelper.web.advice.handler;
 
-import io.github.ye17186.myhelper.core.utils.CollectionUtils;
-import io.github.ye17186.myhelper.core.web.context.RequestContext;
-import io.github.ye17186.myhelper.core.web.request.BaseRequest;
 import io.github.ye17186.myhelper.web.advice.model.SysLogModel;
 import io.github.ye17186.myhelper.web.advice.service.SysLogService;
 import io.github.ye17186.myhelper.web.advice.utils.SysLogUtils;
@@ -39,9 +36,6 @@ public class MhApiAdviceHandler implements MethodInterceptor {
 
         LocalDateTime start = LocalDateTime.now();
 
-        String traceId = RequestContext.requestId();;
-        initTraceId(invocation.getArguments(), traceId);
-
         boolean has = hasLogPoint(invocation);
         SysLogModel logModel = null;
         try {
@@ -65,17 +59,6 @@ public class MhApiAdviceHandler implements MethodInterceptor {
                 }
             }
             log.trace("[MyHelper - API] API增强。 API业务逻辑处理完成.");
-        }
-    }
-
-    private void initTraceId(Object[] args, String traceId) {
-
-        if (CollectionUtils.isNotEmpty(args)) {
-            for (Object arg : args) {
-                if (arg instanceof BaseRequest) {
-                    ((BaseRequest) arg).setTraceId(traceId);
-                }
-            }
         }
     }
 
