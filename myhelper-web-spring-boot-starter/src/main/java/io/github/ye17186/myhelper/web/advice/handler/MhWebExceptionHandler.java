@@ -42,7 +42,7 @@ public class MhWebExceptionHandler extends MhSaExceptionHandler {
 
 
         String errMsg = collectErrorMsg(ex);
-        log.info("[业务异常] traceId = {}, uri = {}, msg = {}",
+        log.info("[参数异常] traceId = {}, uri = {}, msg = {}",
                 RequestContext.requestId(),
                 request.getRequestURI(),
                 errMsg);
@@ -54,7 +54,7 @@ public class MhWebExceptionHandler extends MhSaExceptionHandler {
 
 
         String errMsg = collectErrorMsg(ex);
-        log.info("[业务异常] traceId = {}, uri = {}, msg = {}",
+        log.info("[参数异常] traceId = {}, uri = {}, msg = {}",
                 RequestContext.requestId(),
                 request.getRequestURI(),
                 errMsg);

@@ -12,4 +12,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @ConfigurationProperties(prefix = "spring.my-helper.datasource")
 public class MhDataSourceProperties {
+
+    private boolean enableEnc = true;
+    private String publicKey;
 }
