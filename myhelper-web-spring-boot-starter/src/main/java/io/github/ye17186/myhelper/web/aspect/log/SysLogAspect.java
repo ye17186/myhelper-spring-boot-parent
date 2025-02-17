@@ -55,7 +55,7 @@ public class SysLogAspect {
             if (logModel != null) {
                 logModel.setDuration(Duration.between(start, LocalDateTime.now()).toMillis());
                 if (logService != null) {
-                    logService.handle(logModel);
+                    logService.handle(point, logModel);
                 }
             }
         }

@@ -1,6 +1,7 @@
 package io.github.ye17186.myhelper.web.advice.service;
 
 import io.github.ye17186.myhelper.web.advice.model.SysLogModel;
+import io.github.ye17186.myhelper.web.annotation.SysLogPoint;
 
 /**
  * @author ye17186
@@ -8,5 +9,5 @@ import io.github.ye17186.myhelper.web.advice.model.SysLogModel;
  */
 public interface SysLogService {
 
-    void handle(SysLogModel model);
+    void handle(SysLogPoint point, SysLogModel model);
 }

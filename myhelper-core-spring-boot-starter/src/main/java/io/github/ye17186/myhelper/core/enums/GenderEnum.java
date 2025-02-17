@@ -4,17 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * 枚举：是否
+ * 枚举：性别
  *
- * @author ye17186
- * @date 2024/5/31
+ * @author yemeng20
  */
 @Getter
 @AllArgsConstructor
-public enum YNEnum {
+public enum GenderEnum {
 
-    Y("Y", "是"),
-    N("N", "否"),
+    M("M", "男"),
+    F("F", "女"),
+    X("X", "未知"),
     ;
 
     private final String code;

@@ -17,7 +17,9 @@ import java.util.concurrent.Future;
 /**
  * @author ye17186
  * @since 2022-12-13
+ * @deprecated 使用TtlExecutors.getTtlExecutor()代替
  */
+@Deprecated
 public class ThreadPoolTaskExecutorWrapper extends ThreadPoolTaskExecutor implements TtlWrapper<Executor>, TtlEnhanced {
 
     private static final long serialVersionUID = 105770736693032615L;

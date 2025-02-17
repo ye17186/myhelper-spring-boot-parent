@@ -15,7 +15,6 @@ import java.util.regex.Pattern;
  * 数据源加密处理
  *
  * @author ye17186
- * @date 2024/5/30
  */
 @Slf4j
 public class MhEncDataSourceInitEvent implements DataSourceInitEvent {
@@ -30,11 +29,13 @@ public class MhEncDataSourceInitEvent implements DataSourceInitEvent {
 
     public void beforeCreate(DataSourceProperty dataSourceProperty) {
 
-        String publicKey = StringUtils.isNotEmpty(this.properties.getPublicKey()) ? this.properties.getPublicKey() : dataSourceProperty.getPublicKey();
-        if (StringUtils.isNotEmpty(publicKey)) {
-            dataSourceProperty.setUrl(this.decrypt(publicKey, dataSourceProperty.getUrl()));
-            dataSourceProperty.setUsername(this.decrypt(publicKey, dataSourceProperty.getUsername()));
-            dataSourceProperty.setPassword(this.decrypt(publicKey, dataSourceProperty.getPassword()));
+        if (properties.isEnableEnc()) {
+            String publicKey = StringUtils.isNotEmpty(this.properties.getPublicKey()) ? this.properties.getPublicKey() : dataSourceProperty.getPublicKey();
+            if (StringUtils.isNotEmpty(publicKey)) {
+                dataSourceProperty.setUrl(this.decrypt(publicKey, dataSourceProperty.getUrl()));
+                dataSourceProperty.setUsername(this.decrypt(publicKey, dataSourceProperty.getUsername()));
+                dataSourceProperty.setPassword(this.decrypt(publicKey, dataSourceProperty.getPassword()));
+            }
         }
     }
 

@@ -1,5 +1,7 @@
-package io.github.ye17186.myhelper.web.http;
+package io.github.ye17186.myhelper.web.http.factory;
 
+import io.github.ye17186.myhelper.web.http.HttpClientHolder;
+import io.github.ye17186.myhelper.web.http.HttpClientProperties;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.lang.NonNull;
 

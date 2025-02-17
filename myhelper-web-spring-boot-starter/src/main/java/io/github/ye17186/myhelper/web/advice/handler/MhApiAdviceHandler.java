@@ -36,17 +36,18 @@ public class MhApiAdviceHandler implements MethodInterceptor {
 
         LocalDateTime start = LocalDateTime.now();
 
-        boolean has = hasLogPoint(invocation);
+
+        SysLogPoint point = getLogPoint(invocation);
         SysLogModel logModel = null;
         try {
             log.trace("[MyHelper - API] API增强。 API业务逻辑处理开始.");
             Object apiResponse = invocation.proceed();
-            if (properties.isLogEnabled() && has) {
+            if (properties.isLogEnabled() && point != null) {
                 logModel = SysLogUtils.buildLog(invocation, start, apiResponse, null);
             }
             return apiResponse;
         } catch (Throwable e) {
-            if (properties.isLogEnabled() && has) {
+            if (properties.isLogEnabled() && point != null) {
                 logModel = SysLogUtils.buildLog(invocation, start, null, e);
             }
             log.trace("[MyHelper - API] API增强。 API业务逻辑处理异常. 异常信息: {}", e.getMessage(), e);
@@ -55,15 +56,15 @@ public class MhApiAdviceHandler implements MethodInterceptor {
             if (logModel != null) {
                 logModel.setDuration(Duration.between(start, LocalDateTime.now()).toMillis());
                 if (logService != null) {
-                    logService.handle(logModel);
+                    logService.handle(invocation.getMethod().getAnnotation(SysLogPoint.class), logModel);
                 }
             }
             log.trace("[MyHelper - API] API增强。 API业务逻辑处理完成.");
         }
     }
 
-    private boolean hasLogPoint(MethodInvocation invocation) {
+    private SysLogPoint getLogPoint(MethodInvocation invocation) {
 
-        return invocation.getMethod().getAnnotation(SysLogPoint.class) != null;
+        return invocation.getMethod().getAnnotation(SysLogPoint.class);
     }
 }

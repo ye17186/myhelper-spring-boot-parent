@@ -13,6 +13,13 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "spring.my-helper.datasource")
 public class MhDataSourceProperties {
 
+    /**
+     * 是否启用数据库加密功能
+     */
     private boolean enableEnc = true;
+
+    /**
+     * 公钥
+     */
     private String publicKey;
 }
