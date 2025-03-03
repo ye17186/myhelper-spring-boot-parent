@@ -65,7 +65,7 @@ public class MhWebInterceptorAutoConfiguration implements WebMvcConfigurer {
 
         if (CollectionUtils.isNotEmpty(properties.getLoginInterceptors())) {
             properties.getLoginInterceptors().forEach(config -> {
-                MhLoginInterceptor interceptor = new MhLoginInterceptor(tokenService, config.getLoginType(),
+                MhLoginInterceptor interceptor = new MhLoginInterceptor(tokenService, config.getSupportTypes(),
                         config.getUserRef());
 
                 registry.addInterceptor(interceptor)

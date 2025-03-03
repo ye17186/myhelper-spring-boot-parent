@@ -17,6 +17,7 @@ import org.springframework.web.cors.CorsUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author ye17186
@@ -27,17 +28,18 @@ public class MhLoginInterceptor extends MhInterceptor {
 
     private MhUserCacheService cacheService = null;
     private final String userRef;
+
     /**
      * 登录类型（账号体系）
      */
-    private final String loginType;
+    private final List<String> supportTypes;
 
     private final MhTokenService mhTokenService;
 
-    public MhLoginInterceptor(MhTokenService mhTokenService, String loginType, String userRef) {
+    public MhLoginInterceptor(MhTokenService mhTokenService, List<String> supportTypes, String userRef) {
 
         this.mhTokenService = mhTokenService;
-        this.loginType = loginType;
+        this.supportTypes = supportTypes;
         this.userRef = userRef;
     }
 
@@ -70,9 +72,17 @@ public class MhLoginInterceptor extends MhInterceptor {
 
         if (isLogin) {
             LoginKey key = mhTokenService.getLoginKey();
-            if (key != null && loginType.equals(key.getLoginType())) {
-                MhContextUser user = getCacheService().getAndCache(key);
-                MhUserContext.set(user);
+            if (key != null) {
+                try {
+                    MhContextUser user = getCacheService().getCacheOnly(key);
+                    if (user != null) {
+                        MhUserContext.set(user);
+                    } else {
+                        isLogin = false;
+                    }
+                } catch (Exception e) {
+                    isLogin = false;
+                }
             } else {
                 isLogin = false;
             }

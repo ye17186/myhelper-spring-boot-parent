@@ -1,9 +1,11 @@
 package io.github.ye17186.myhelper.web.autoconfigure.properties;
 
+import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 /**
  * @author ye17186
@@ -21,7 +23,7 @@ public class MhWebLoginInterceptorProperties {
     /**
      * 登录类型（账号体系）
      */
-    private String loginType = "default";
+    private List<String> supportTypes = Lists.newArrayList("default");
 
     /**
      * 用户信息缓存Bean ID

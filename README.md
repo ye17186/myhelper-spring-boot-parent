@@ -5,7 +5,7 @@
 <dependency>
     <groupId>io.github.ye17186</groupId>
     <artifactId>myhelper-xxx-spring-boot-starter</artifactId>
-    <version>0.0.7</version>
+    <version>0.0.9</version>
 </dependency>
 ```
 
@@ -13,7 +13,11 @@
 这里的文档待补充
 
 ## 更新日志
-### V0.0.7
+### V0.0.9
+#### myhelper-web-spring-boot-starter
+- MhLoginInterceptor支持多账户提现登录
+
+### V0.0.8
 #### myhelper-core-spring-boot-starter
 - 新增密码处理相关工具类 PasswordUtils
 - 新增全局唯一请求ID BaseRequest#mhTraceId
