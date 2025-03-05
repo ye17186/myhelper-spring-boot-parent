@@ -6,7 +6,7 @@
 
     <groupId>io.github.ye17186</groupId>
     <artifactId>myhelper-spring-boot-parent</artifactId>
-    <version>0.0.9</version>
+    <version>0.0.10</version>
     <packaging>pom</packaging>
     <name>myhelper-spring-boot-parent</name>
     <description>a web application starter collection</description>
@@ -44,6 +44,7 @@
         <module>myhelper-token-spring-boot-starter</module>
         <module>myhelper-web-spring-boot-starter</module>
         <module>myhelper-job-spring-boot-starter</module>
+        <module>myhelper-redis-spring-boot-starter</module>
 
     </modules>
 
@@ -58,7 +59,7 @@
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
 
         <spring-boot.version>2.7.15</spring-boot.version>
-        <my-helper.version>0.0.9</my-helper.version>
+        <my-helper.version>0.0.10</my-helper.version>
 
         <!--    冲突管理    -->
         <checker-qual.version>3.19.0</checker-qual.version>
@@ -148,6 +149,11 @@
             <dependency>
                 <groupId>io.github.ye17186</groupId>
                 <artifactId>myhelper-oss-spring-boot-starter</artifactId>
+                <version>${my-helper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.ye17186</groupId>
+                <artifactId>myhelper-redis-spring-boot-starter</artifactId>
                 <version>${my-helper.version}</version>
             </dependency>
 

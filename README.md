@@ -5,7 +5,7 @@
 <dependency>
     <groupId>io.github.ye17186</groupId>
     <artifactId>myhelper-xxx-spring-boot-starter</artifactId>
-    <version>0.0.9</version>
+    <version>0.0.10</version>
 </dependency>
 ```
 
@@ -13,11 +13,21 @@
 这里的文档待补充
 
 ## 更新日志
+### V0.0.10
+#### myhelper-caffeine-spring-boot-starter
+- 配置前缀由`spring.my-helper.caffeine`改成`spring.my-helper.cache`
+#### myhelper-redis-spring-boot-starter
+- 新增模块，用于快速配置基于Redis的Spring Cache功能
+- 配置前缀与`caffeine`模块共用`spring.my-helper.cache`
+
 ### V0.0.9
+这个版本忘记改了什么，直接跳过吧
+
+### V0.0.8
 #### myhelper-web-spring-boot-starter
 - MhLoginInterceptor支持多账户提现登录
 
-### V0.0.8
+### V0.0.7
 #### myhelper-core-spring-boot-starter
 - 新增密码处理相关工具类 PasswordUtils
 - 新增全局唯一请求ID BaseRequest#mhTraceId

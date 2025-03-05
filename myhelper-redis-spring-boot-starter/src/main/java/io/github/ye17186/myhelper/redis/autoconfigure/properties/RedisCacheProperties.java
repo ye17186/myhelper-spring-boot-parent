@@ -1,4 +1,4 @@
-package io.github.ye17186.myhelper.caffeine.autoconfigure.properties;
+package io.github.ye17186.myhelper.redis.autoconfigure.properties;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,17 +14,12 @@ import java.util.Map;
 @Setter
 @Getter
 @ConfigurationProperties(prefix = "spring.my-helper.cache")
-public class CaffeineCacheProperties {
+public class RedisCacheProperties {
 
     /**
-     * 默认超时时间，单位：秒
+     * 默认存活时间，单位：秒
      */
-    private Long timeout = 3600L;
-
-    /**
-     * 默认最大大小
-     */
-    private Integer maxsize = 100;
+    private Long ttl = 3600L;
 
     /**
      * 缓存配置。key：缓存名，value：过期时间
