@@ -39,7 +39,7 @@ public class MhWebProperties {
     /**
      * API鉴权拦截器
      */
-    private MhWebApiAuthInterceptorProperties apiAuthInterceptor = new MhWebApiAuthInterceptorProperties();
+    private MhWebApiAuthInterceptorProperties apiSignInterceptor = new MhWebApiAuthInterceptorProperties();
 
     /**
      * 登录拦截器组

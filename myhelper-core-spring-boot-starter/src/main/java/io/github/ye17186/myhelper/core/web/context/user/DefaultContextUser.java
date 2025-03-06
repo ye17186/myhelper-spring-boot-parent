@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * @author yemeng20
+ * @author ye17186
  */
 @Setter
 @Getter
@@ -62,4 +62,9 @@ public class DefaultContextUser extends MhContextUser {
      * 登录后的个人主页
      */
     private String homePath;
+
+    /**
+     * 具备权限的部门集合
+     */
+    private List<Long> permissionDepartmentIds;
 }

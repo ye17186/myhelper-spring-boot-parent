@@ -5,7 +5,7 @@ import io.github.ye17186.myhelper.token.MhTokenService;
 import io.github.ye17186.myhelper.web.autoconfigure.properties.MhWebApiAuthInterceptorProperties;
 import io.github.ye17186.myhelper.web.autoconfigure.properties.MhWebProperties;
 import io.github.ye17186.myhelper.web.filter.RequestLogService;
-import io.github.ye17186.myhelper.web.interceptor.api.MhApiAuthInterceptor;
+import io.github.ye17186.myhelper.web.interceptor.api.MhApiSignInterceptor;
 import io.github.ye17186.myhelper.web.interceptor.trace.MhRequestTraceInterceptor;
 import io.github.ye17186.myhelper.web.interceptor.login.MhLoginInterceptor;
 import lombok.extern.slf4j.Slf4j;
@@ -50,9 +50,9 @@ public class MhWebInterceptorAutoConfiguration implements WebMvcConfigurer {
 
     private void addApiAuthInterceptor(InterceptorRegistry registry) {
 
-        MhWebApiAuthInterceptorProperties apiAuthProperties = properties.getApiAuthInterceptor();
+        MhWebApiAuthInterceptorProperties apiAuthProperties = properties.getApiSignInterceptor();
         if (apiAuthProperties.isEnabled()) {
-            MhApiAuthInterceptor interceptor = new MhApiAuthInterceptor(apiAuthProperties);
+            MhApiSignInterceptor interceptor = new MhApiSignInterceptor(apiAuthProperties);
 
             registry.addInterceptor(interceptor)
                     .addPathPatterns(apiAuthProperties.getIncludes())

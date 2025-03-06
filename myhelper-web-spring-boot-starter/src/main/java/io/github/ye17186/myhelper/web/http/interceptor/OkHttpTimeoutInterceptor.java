@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author yemeng20
+ * @author ye17186
  */
 public class OkHttpTimeoutInterceptor implements Interceptor {
     @NotNull

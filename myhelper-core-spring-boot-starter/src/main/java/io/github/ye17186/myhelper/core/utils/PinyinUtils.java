@@ -8,7 +8,7 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
 /**
- * @author yemeng20
+ * @author ye17186
  */
 public class PinyinUtils {
 

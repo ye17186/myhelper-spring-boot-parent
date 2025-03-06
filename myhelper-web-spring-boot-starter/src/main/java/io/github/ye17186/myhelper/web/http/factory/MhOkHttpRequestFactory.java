@@ -5,7 +5,7 @@ import okhttp3.OkHttpClient;
 import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 
 /**
- * @author yemeng20
+ * @author ye17186
  */
 public class MhOkHttpRequestFactory extends OkHttp3ClientHttpRequestFactory {
 

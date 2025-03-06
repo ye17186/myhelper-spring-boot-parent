@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author yemeng20
+ * @author ye17186
  */
 public class RedisCacheManagerFactory {
 
