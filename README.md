@@ -13,6 +13,14 @@
 这里的文档待补充
 
 ## 更新日志
+### V0.1.0
+#### myhelper-redis-spring-boot-starter
+- 换成key、value序列化方式改为: jackson
+#### myhelper-web-spring-boot-starter
+- 登录拦截器实现优化
+#### myhelper-token-spring-boot-starter
+- 用户登录方式，支持随路保存用户数据
+
 ### V0.0.10
 #### myhelper-caffeine-spring-boot-starter
 - 配置前缀由`spring.my-helper.caffeine`改成`spring.my-helper.cache`

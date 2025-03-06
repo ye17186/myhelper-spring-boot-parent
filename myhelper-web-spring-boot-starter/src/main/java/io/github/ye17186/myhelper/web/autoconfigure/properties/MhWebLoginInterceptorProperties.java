@@ -1,11 +1,9 @@
 package io.github.ye17186.myhelper.web.autoconfigure.properties;
 
-import com.google.common.collect.Lists;
+import io.github.ye17186.myhelper.core.web.context.user.DefaultContextUser;
+import io.github.ye17186.myhelper.core.web.context.user.MhContextUser;
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.validation.constraints.NotEmpty;
-import java.util.List;
 
 /**
  * @author ye17186
@@ -20,17 +18,7 @@ public class MhWebLoginInterceptorProperties {
      */
     private boolean enabled = true;
 
-    /**
-     * 登录类型（账号体系）
-     */
-    private List<String> supportTypes = Lists.newArrayList("default");
-
-    /**
-     * 用户信息缓存Bean ID
-     */
-    @NotEmpty
-    private String userRef;
-
+    private Class<? extends MhContextUser> userType = DefaultContextUser.class;
 
     /**
      * 匹配路径

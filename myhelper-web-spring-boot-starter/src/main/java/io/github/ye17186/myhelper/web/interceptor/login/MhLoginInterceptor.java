@@ -1,6 +1,7 @@
 package io.github.ye17186.myhelper.web.interceptor.login;
 
-import io.github.ye17186.myhelper.core.utils.SpringUtils;
+import io.github.ye17186.myhelper.core.utils.JsonUtils;
+import io.github.ye17186.myhelper.core.utils.StringUtils;
 import io.github.ye17186.myhelper.core.web.context.RequestContext;
 import io.github.ye17186.myhelper.core.web.context.user.MhContextUser;
 import io.github.ye17186.myhelper.core.web.context.user.MhUserContext;
@@ -8,7 +9,6 @@ import io.github.ye17186.myhelper.core.web.error.ErrorCode;
 import io.github.ye17186.myhelper.core.web.response.ApiResp;
 import io.github.ye17186.myhelper.token.MhTokenService;
 import io.github.ye17186.myhelper.token.model.LoginKey;
-import io.github.ye17186.myhelper.web.context.MhUserCacheService;
 import io.github.ye17186.myhelper.web.interceptor.MhInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
@@ -17,7 +17,6 @@ import org.springframework.web.cors.CorsUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * @author ye17186
@@ -26,21 +25,14 @@ import java.util.List;
 @Slf4j
 public class MhLoginInterceptor extends MhInterceptor {
 
-    private MhUserCacheService cacheService = null;
-    private final String userRef;
-
-    /**
-     * 登录类型（账号体系）
-     */
-    private final List<String> supportTypes;
+    private final Class<? extends MhContextUser> userType;
 
     private final MhTokenService mhTokenService;
 
-    public MhLoginInterceptor(MhTokenService mhTokenService, List<String> supportTypes, String userRef) {
+    public MhLoginInterceptor(MhTokenService mhTokenService, Class<? extends MhContextUser> userType) {
 
         this.mhTokenService = mhTokenService;
-        this.supportTypes = supportTypes;
-        this.userRef = userRef;
+        this.userType = userType;
     }
 
     @Override
@@ -74,11 +66,12 @@ public class MhLoginInterceptor extends MhInterceptor {
             LoginKey key = mhTokenService.getLoginKey();
             if (key != null) {
                 try {
-                    MhContextUser user = getCacheService().getCacheOnly(key);
-                    if (user != null) {
-                        MhUserContext.set(user);
+                    String userJson = mhTokenService.getUserJson();
+                    if (StringUtils.isNotEmpty(userJson)) {
+                        MhUserContext.set(JsonUtils.json2Obj(userJson, userType));
                     } else {
                         isLogin = false;
+                        mhTokenService.logout();
                     }
                 } catch (Exception e) {
                     isLogin = false;
@@ -87,7 +80,6 @@ public class MhLoginInterceptor extends MhInterceptor {
                 isLogin = false;
             }
         }
-
 
         if (!isLogin) {
             log.info("[业务异常] traceId = {}, code = {}, msg = {}, uri = {}",
@@ -100,13 +92,5 @@ public class MhLoginInterceptor extends MhInterceptor {
         }
 
         return isLogin;
-    }
-
-    private MhUserCacheService getCacheService() {
-
-        if (cacheService == null) {
-            cacheService = SpringUtils.getBean(userRef, MhUserCacheService.class);
-        }
-        return cacheService;
     }
 }
