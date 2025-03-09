@@ -17,6 +17,11 @@ import java.util.Map;
 public class RedisCacheProperties {
 
     /**
+     * 缓存前缀
+     */
+    private String prefix = "myhelper::";
+
+    /**
      * 默认存活时间，单位：秒
      */
     private Long ttl = 3600L;

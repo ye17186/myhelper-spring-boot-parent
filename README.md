@@ -5,7 +5,7 @@
 <dependency>
     <groupId>io.github.ye17186</groupId>
     <artifactId>myhelper-xxx-spring-boot-starter</artifactId>
-    <version>0.0.10</version>
+    <version>0.1.1</version>
 </dependency>
 ```
 
@@ -13,6 +13,12 @@
 这里的文档待补充
 
 ## 更新日志
+### V0.1.1
+#### myhelper-redis-spring-boot-starter
+- 修复: 解决spring cache redis缓存反序列化成对象时的报错 LinkedHashMap can not cast to xxx
+- 新增: redis缓存key，支持自定义前缀`spring.my-helper.cache.prefix`
+- 优化: redis value序列化方式由`Jackson2JsonRedisSerializer`改为`GenericJackson2JsonRedisSerializer`
+
 ### V0.1.0
 #### myhelper-redis-spring-boot-starter
 - 换成key、value序列化方式改为: jackson
