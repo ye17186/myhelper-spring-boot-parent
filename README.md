@@ -14,6 +14,10 @@
 
 ## 更新日志
 ### V0.1.1
+#### myhelper-web-spring-boot-starter
+- 优化: MhClientHttpRequestFactory RestTemplate支持https
+
+### V0.1.1
 #### myhelper-redis-spring-boot-starter
 - 修复: 解决spring cache redis缓存反序列化成对象时的报错 LinkedHashMap can not cast to xxx
 - 新增: redis缓存key，支持自定义前缀`spring.my-helper.cache.prefix`
