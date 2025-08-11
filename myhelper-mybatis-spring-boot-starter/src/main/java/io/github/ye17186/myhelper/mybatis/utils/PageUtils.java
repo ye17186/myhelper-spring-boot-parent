@@ -1,7 +1,6 @@
 package io.github.ye17186.myhelper.mybatis.utils;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Lists;
 import io.github.ye17186.myhelper.core.web.request.PageRequest;
@@ -46,7 +45,7 @@ public class PageUtils {
         response.setPageSize(page.getSize());
         response.setTotalPage(page.getPages());
         response.setTotalCount(page.getTotal());
-        response.setData(page.getRecords());
+        response.setItems(page.getRecords());
         return response;
     }
 
@@ -57,7 +56,7 @@ public class PageUtils {
         response.setPageSize(page.getSize());
         response.setTotalPage(page.getPages());
         response.setTotalCount(page.getTotal());
-        response.setData(page.getRecords().stream().map(function).collect(Collectors.toList()));
+        response.setItems(page.getRecords().stream().map(function).collect(Collectors.toList()));
         return response;
     }
 
@@ -68,7 +67,7 @@ public class PageUtils {
         response.setPageSize(page.getSize());
         response.setTotalPage(0);
         response.setTotalCount(0);
-        response.setData(Lists.newArrayList());
+        response.setItems(Lists.newArrayList());
         return response;
     }
 }
