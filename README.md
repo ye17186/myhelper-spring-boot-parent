@@ -15,12 +15,15 @@
 ## 更新日志
 ### V0.1.2
 #### myhelper-core-spring-boot-starter
-- 破坏性优化，PageResponse对象数据集属性字段由data修改为items
-- 新增WavUtils工具类，用于生成Wav音频文件
+- 破坏性优化，`PageResponse`对象数据集属性字段由`data`修改为`items`
+- 新增`WavUtils`工具类，用于生成Wav音频文件
+
+#### myhelper-job-spring-boot-starter
+- xxl-job依赖升级，`2.4.0` -> `2.5.0`
 
 ### V0.1.1
 #### myhelper-web-spring-boot-starter
-- 优化: MhClientHttpRequestFactory RestTemplate支持https
+- 优化: `MhClientHttpRequestFactory` RestTemplate支持https
 
 ### V0.1.1
 #### myhelper-redis-spring-boot-starter
