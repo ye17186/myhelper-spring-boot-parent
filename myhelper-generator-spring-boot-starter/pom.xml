@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>myhelper-generator-spring-boot-starter</artifactId>
+    <name>myhelper-generator-spring-boot-starter</name>
     <description>Myhelper组件 - Generator模块</description>
 
     <properties>

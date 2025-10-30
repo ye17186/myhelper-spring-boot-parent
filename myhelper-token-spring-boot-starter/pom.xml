@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>myhelper-token-spring-boot-starter</artifactId>
+    <name>myhelper-token-spring-boot-starter</name>
     <description>Myhelper组件 - Token模块</description>
 
     <properties>

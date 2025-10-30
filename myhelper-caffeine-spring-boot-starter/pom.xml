@@ -8,6 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>myhelper-caffeine-spring-boot-starter</artifactId>
+    <name>myhelper-caffeine-spring-boot-starter</name>
     <description>Myhelper组件 - Caffeine模块</description>
 
     <properties>

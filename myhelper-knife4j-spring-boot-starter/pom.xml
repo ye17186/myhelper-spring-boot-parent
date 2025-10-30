@@ -8,6 +8,7 @@
         <version>0.1.2</version>
     </parent>
     <artifactId>myhelper-knife4j-spring-boot-starter</artifactId>
+    <name>myhelper-knife4j-spring-boot-starter</name>
     <description>Myhelper组件 - Knife4j模块</description>
 
     <properties>

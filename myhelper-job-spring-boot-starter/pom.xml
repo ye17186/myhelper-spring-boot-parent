@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>myhelper-job-spring-boot-starter</artifactId>
+    <name>myhelper-job-spring-boot-starter</name>
     <description>Myhelper组件 - Job模块</description>
 
     <properties>

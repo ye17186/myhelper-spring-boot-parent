@@ -9,6 +9,7 @@
     </parent>
 
     <artifactId>myhelper-mybatis-spring-boot-starter</artifactId>
+    <name>myhelper-mybatis-spring-boot-starter</name>
     <description>Myhelper组件 - Mybatis模块</description>
 
     <properties>

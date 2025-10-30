@@ -8,6 +8,7 @@
         <version>0.1.2</version>
     </parent>
     <artifactId>myhelper-minio-spring-boot-starter</artifactId>
+    <name>myhelper-minio-spring-boot-starter</name>
     <description>Myhelper组件 - Minio模块</description>
 
     <properties>
