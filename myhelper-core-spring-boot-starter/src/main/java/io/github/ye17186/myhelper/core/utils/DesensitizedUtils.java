@@ -50,7 +50,7 @@ public class DesensitizedUtils {
      */
     public static String email(String email) {
 
-        int index = email.indexOf('@');
+        int index = email.indexOf(StringPool.AT);
         return index < 0 ? email : desensitized(email, 0, index);
     }
 

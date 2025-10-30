@@ -5,6 +5,7 @@ import com.nulabinc.zxcvbn.Zxcvbn;
 import org.springframework.util.DigestUtils;
 
 /**
+ * 密码处理工具类
  * @author ye17186
  * @date 2024/5/26
  */

@@ -29,7 +29,7 @@ public class PasswordEncoder {
      * @param rawPassword 原文密码
      * @param salt        盐值
      * @param password    密码密码
-     * @return
+     * @return 密码是否匹配
      */
     public static boolean match(String rawPassword, String salt, String password) {
 
