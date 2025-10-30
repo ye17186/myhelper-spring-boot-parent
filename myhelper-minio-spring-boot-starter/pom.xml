@@ -5,9 +5,12 @@
     <parent>
         <groupId>io.github.ye17186</groupId>
         <artifactId>myhelper-spring-boot-parent</artifactId>
-        <version>0.0.3</version>
+        <version>0.1.2</version>
     </parent>
     <artifactId>myhelper-minio-spring-boot-starter</artifactId>
+    <name>myhelper-minio-spring-boot-starter</name>
+    <description>Myhelper组件 - Minio模块</description>
+
     <properties>
         <minio.version>8.5.2</minio.version>
     </properties>

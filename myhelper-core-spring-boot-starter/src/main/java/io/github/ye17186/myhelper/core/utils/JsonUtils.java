@@ -26,7 +26,7 @@ public class JsonUtils {
      * 对象 => json字符串
      *
      * @param obj 源对象
-     * @return
+     * @return json字符串
      */
     public static <T> String obj2Json(T obj) {
 
@@ -48,7 +48,7 @@ public class JsonUtils {
      * @param json  源json串
      * @param clazz 对象类
      * @param <T>   泛型
-     * @return
+     * @return 实体对象
      */
     public static <T> T json2Obj(String json, Class<T> clazz) {
 
@@ -61,7 +61,7 @@ public class JsonUtils {
      * @param json 源json串
      * @param type 对象类型
      * @param <T>  泛型
-     * @return
+     * @return 实体对象
      */
     public static <T> T json2Obj(String json, TypeReference<T> type) {
 
@@ -73,7 +73,7 @@ public class JsonUtils {
      *
      * @param json 源json串
      * @param <T>  元素泛型
-     * @return
+     * @return List集合
      */
     public static <T> List<T> json2List(String json, Class<T> itemClz) {
 
@@ -85,7 +85,7 @@ public class JsonUtils {
      *
      * @param json 源json串
      * @param <V>  元素的value泛型
-     * @return
+     * @return Map集合
      */
     public static <V> Map<String, V> json2Map(String json, Class<V> valueClz) {
 
@@ -104,7 +104,7 @@ public class JsonUtils {
      * @param clazz 对象类
      * @param type  对象类型
      * @param <T>   泛型
-     * @return
+     * @return 实体对象
      */
     private static <T> T json2Obj(String json, Class<T> clazz, TypeReference<T> type, JavaType javaType) {
 
@@ -131,7 +131,7 @@ public class JsonUtils {
      *
      * @param collectionClz 集合类型（List、Map）
      * @param elementClz    集合中元素类型
-     * @return
+     * @return Java类型
      */
     private static JavaType buildCollectionType(Class<?> collectionClz, Class<?>... elementClz) {
 

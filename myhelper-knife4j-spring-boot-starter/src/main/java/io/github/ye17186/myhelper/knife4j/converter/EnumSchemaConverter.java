@@ -17,6 +17,7 @@ import java.util.List;
  * @author ye17186
  * @since 2022-11-05
  */
+@SuppressWarnings("unchecked")
 @Slf4j
 public class EnumSchemaConverter implements ModelConverter {
 

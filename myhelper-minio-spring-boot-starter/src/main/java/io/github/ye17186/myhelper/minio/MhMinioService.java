@@ -1,23 +1,20 @@
 package io.github.ye17186.myhelper.minio;
 
-import io.github.ye17186.myhelper.core.exception.BizException;
-import io.github.ye17186.myhelper.core.oss.result.OssDownloadResult;
+import io.github.ye17186.myhelper.core.oss.result.OssGetResult;
 import io.github.ye17186.myhelper.core.oss.result.OssPutResult;
 import io.github.ye17186.myhelper.core.oss.result.OssUrlResult;
 import io.github.ye17186.myhelper.core.oss.template.MhOssTemplate;
 import io.github.ye17186.myhelper.core.utils.JsonUtils;
-import io.github.ye17186.myhelper.core.web.error.ErrorCode;
-import io.minio.DownloadObjectArgs;
-import io.minio.GetPresignedObjectUrlArgs;
-import io.minio.MinioClient;
-import io.minio.PutObjectArgs;
+import io.minio.*;
 import io.minio.http.Method;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 
 import java.io.InputStream;
-import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 /**
  * Minio对象存储服务
@@ -29,9 +26,12 @@ import java.time.LocalDateTime;
 public class MhMinioService implements MhOssTemplate {
 
     private final MinioClient client;
+    private final MinioClient proxyClient;
 
-    public MhMinioService(MinioClient client) {
+    public MhMinioService(MinioClient client, @Nullable MinioClient proxyClient) {
+
         this.client = client;
+        this.proxyClient = Optional.ofNullable(proxyClient).orElse(client);
     }
 
     @Override
@@ -52,17 +52,36 @@ public class MhMinioService implements MhOssTemplate {
         OssPutResult result = new OssPutResult(bucket, objKey);
         long start = System.currentTimeMillis();
         try {
-            log.info("[My-Helper][Minio] 上传文件到Minio开始。bucket：{}，objKey:{}", bucket, objKey);
+            log.info("[MyHelper][Minio] 上传文件到Minio开始。bucket：{}，objKey:{}", bucket, objKey);
             PutObjectArgs args = PutObjectArgs.builder().bucket(bucket).object(objKey)
                     .stream(stream, stream.available(), -1)
                     .contentType(contentType).build();
             client.putObject(args);
         } catch (Exception e) {
-            log.info("[My-Helper][Minio] 上传文件异常。", e);
+            log.info("[MyHelper][Minio] 上传文件异常。", e);
             result.setSuccess(false);
         } finally {
             result.setDuration(System.currentTimeMillis() - start);
-            log.info("[My-Helper][Minio] 上传文件结束。结果：{}", JsonUtils.obj2Json(result));
+            log.info("[MyHelper][Minio] 上传文件结束。结果：{}", JsonUtils.obj2Json(result));
+        }
+        return result;
+    }
+
+    @Override
+    public OssGetResult getObj(String bucket, String objKey) {
+
+        OssGetResult result = new OssGetResult(bucket, objKey);
+        long start = System.currentTimeMillis();
+        try {
+            GetObjectArgs args = GetObjectArgs.builder().bucket(bucket).object(objKey).build();
+            GetObjectResponse response = client.getObject(args);
+            result.setInputStream(response);
+        } catch (Exception e) {
+            log.info("[MyHelper][Minio] 获取文件流异常。", e);
+            result.setSuccess(false);
+        } finally {
+            result.setDuration(System.currentTimeMillis() - start);
+            log.info("[MyHelper][Minio] 获取文件流结束。结果：{}", JsonUtils.obj2Json(result));
         }
         return result;
     }
@@ -70,49 +89,59 @@ public class MhMinioService implements MhOssTemplate {
     @Override
     public OssUrlResult getUrl(String bucket, String objKey) {
 
-        OssUrlResult result = new OssUrlResult(bucket, objKey);
-        long start = System.currentTimeMillis();
-        try {
-            // 注意：minio最大值支持7天，如果需要获取永久链接，必须将bucket设置为public
-            GetPresignedObjectUrlArgs args = GetPresignedObjectUrlArgs.builder().method(Method.GET)
-                    .bucket(bucket).object(objKey).build();
-            String url = client.getPresignedObjectUrl(args);
-            result.setUrl(url.substring(0, url.indexOf("?")));
-        } catch (Exception e) {
-            log.info("[My-Helper][Minio] 获取文件URL异常。", e);
-            result.setSuccess(false);
-        } finally {
-            result.setDuration(System.currentTimeMillis() - start);
-            log.info("[My-Helper][Minio] 获取文件URL结束。结果：{}", JsonUtils.obj2Json(result));
-        }
-        return result;
+        return doGetUrl(bucket, objKey, -1, false);
+    }
+
+    @Override
+    public OssUrlResult getProxyUrl(String bucket, String objKey) {
+
+        return doGetUrl(bucket, objKey, -1, true);
     }
 
     @Override
     public OssUrlResult getUrl(String bucket, String objKey, int expire) {
 
+        return doGetUrl(bucket, objKey, expire, false);
+    }
+
+    @Override
+    public OssUrlResult getProxyUrl(String bucket, String objKey, int expire) {
+
+        return doGetUrl(bucket, objKey, expire, true);
+    }
+
+    private OssUrlResult doGetUrl(String bucket, String objKey, int expire, boolean isProxy) {
+
         OssUrlResult result = new OssUrlResult(bucket, objKey);
         long start = System.currentTimeMillis();
         try {
             // 注意：minio最大值支持7天
-            GetPresignedObjectUrlArgs args = GetPresignedObjectUrlArgs.builder().method(Method.GET)
-                    .bucket(bucket).object(objKey).expiry(expire).build();
-            String url = client.getPresignedObjectUrl(args);
+            GetPresignedObjectUrlArgs.Builder builder = GetPresignedObjectUrlArgs.builder().method(Method.GET)
+                    .bucket(bucket)
+                    .object(objKey);
+            if (expire > 0) {
+                builder.expiry(expire);
+            }
+            GetPresignedObjectUrlArgs args = builder.build();
+
+            MinioClient targetClient = getTargetClient(isProxy);
+            String url = targetClient.getPresignedObjectUrl(args);
+
             result.setUrl(url);
             result.setExpiredAt(LocalDateTime.now().plusSeconds(expire));
         } catch (Exception e) {
-            log.info("[My-Helper][Minio] 获取文件URL异常。", e);
+            log.info("[MyHelper][Minio] 获取文件URL异常。", e);
             result.setSuccess(false);
         } finally {
             result.setDuration(System.currentTimeMillis() - start);
-            log.info("[My-Helper][Minio] 获取文件URL结束。结果：{}", JsonUtils.obj2Json(result));
+            log.info("[MyHelper][Minio] 获取文件URL结束。结果：{}", JsonUtils.obj2Json(result));
         }
         return result;
     }
 
-    @Override
-    public OssDownloadResult download(String url) {
+    @NonNull
+    private MinioClient getTargetClient(boolean isProxy) {
 
-        throw new BizException(ErrorCode.SYSTEM_ERROR.getCode(), "Minio暂不支持下载文件");
+        return isProxy ? proxyClient : client;
     }
 }

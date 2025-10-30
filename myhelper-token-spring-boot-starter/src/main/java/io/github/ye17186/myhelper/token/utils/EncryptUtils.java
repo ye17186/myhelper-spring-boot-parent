@@ -5,6 +5,7 @@ import cn.dev33.satoken.secure.SaSecureUtil;
 /**
  * @author ye17186
  * @since 2023-03-03
+ * @deprecated token模块不在提供该功能，改有core模块提供
  */
 public class EncryptUtils {
 

@@ -3,6 +3,7 @@ package io.github.ye17186.myhelper.mybatis.utils;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import io.github.ye17186.myhelper.core.web.context.user.MhUserContext;
 import io.github.ye17186.myhelper.mybatis.entity.BaseEntity;
 
 /**
@@ -26,5 +27,21 @@ public class WrapperUtils {
         LambdaQueryWrapper<T> wrapper = Wrappers.lambdaQuery();
         wrapper.last("limit 1");
         return wrapper;
+    }
+
+    public static void preInsert(BaseEntity entity) {
+
+        entity.setCreated(MhUserContext.mhLoginKey());
+        entity.setModified(entity.getCreated());
+    }
+
+    public static void preUpdate(BaseEntity entity) {
+
+        entity.setModified(MhUserContext.mhLoginKey());
+    }
+
+    public static <T extends BaseEntity> void preUpdate(LambdaUpdateWrapper<T> wrapper) {
+
+        wrapper.set(BaseEntity::getModified, MhUserContext.mhLoginKey());
     }
 }

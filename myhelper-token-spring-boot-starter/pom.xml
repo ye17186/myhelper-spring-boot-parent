@@ -5,14 +5,16 @@
     <parent>
         <artifactId>myhelper-spring-boot-parent</artifactId>
         <groupId>io.github.ye17186</groupId>
-        <version>0.0.3</version>
+        <version>0.1.2</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>myhelper-token-spring-boot-starter</artifactId>
+    <name>myhelper-token-spring-boot-starter</name>
+    <description>Myhelper组件 - Token模块</description>
 
     <properties>
-        <sa-token.version>1.34.0</sa-token.version>
+        <sa-token.version>1.38.0</sa-token.version>
     </properties>
 
     <dependencies>

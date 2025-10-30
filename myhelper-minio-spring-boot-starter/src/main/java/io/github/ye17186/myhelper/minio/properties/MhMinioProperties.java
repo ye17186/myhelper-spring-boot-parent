@@ -17,7 +17,7 @@ public class MhMinioProperties {
     private OssType type = OssType.MINIO;
 
     /**
-     * endpoint
+     * endpoint，一般用于内网
      */
     private String endpoint;
 
@@ -35,4 +35,9 @@ public class MhMinioProperties {
      * 是否启用pathStyle
      */
     private boolean enabledPathStyle = true;
+
+    /**
+     * 代理endpoint，一般用于外网
+     */
+    protected String proxyEndpoint;
 }

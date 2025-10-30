@@ -32,7 +32,17 @@ public class MhWebProperties {
     private MhWebAsyncProperties threadPool = new MhWebAsyncProperties();
 
     /**
-     * 登录拦截器
+     * RequestTrace拦截器
+     */
+    private MhWebRequestTraceInterceptorProperties requestTraceInterceptor = new MhWebRequestTraceInterceptorProperties();
+
+    /**
+     * API鉴权拦截器
+     */
+    private MhWebApiAuthInterceptorProperties apiSignInterceptor = new MhWebApiAuthInterceptorProperties();
+
+    /**
+     * 登录拦截器组
      */
     private List<MhWebLoginInterceptorProperties> loginInterceptors = Lists.newArrayList();
 
@@ -40,4 +50,9 @@ public class MhWebProperties {
      * 跨域
      */
     private MhWebCorsProperties cors = new MhWebCorsProperties();
+
+    /**
+     * API增强
+     */
+    private MhWebApiAdviceProperties apiAdvice = new MhWebApiAdviceProperties();
 }

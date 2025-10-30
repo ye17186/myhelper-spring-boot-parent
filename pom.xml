@@ -6,10 +6,10 @@
 
     <groupId>io.github.ye17186</groupId>
     <artifactId>myhelper-spring-boot-parent</artifactId>
-    <version>0.0.3</version>
+    <version>0.1.2</version>
     <packaging>pom</packaging>
     <name>myhelper-spring-boot-parent</name>
-    <description>a web application starters</description>
+    <description>a web application starter collection</description>
 
     <url>https://www.ye186.top</url>
     <scm>
@@ -34,14 +34,17 @@
     <modules>
         <module>myhelper-caffeine-spring-boot-starter</module>
         <module>myhelper-core-spring-boot-starter</module>
+        <module>myhelper-datasource-spring-boot-starter</module>
         <module>myhelper-generator-spring-boot-starter</module>
         <module>myhelper-knife4j-spring-boot-starter</module>
+        <module>myhelper-lock-spring-boot-starter</module>
         <module>myhelper-minio-spring-boot-starter</module>
         <module>myhelper-mybatis-spring-boot-starter</module>
         <module>myhelper-oss-spring-boot-starter</module>
         <module>myhelper-token-spring-boot-starter</module>
         <module>myhelper-web-spring-boot-starter</module>
         <module>myhelper-job-spring-boot-starter</module>
+        <module>myhelper-redis-spring-boot-starter</module>
 
     </modules>
 
@@ -55,12 +58,16 @@
         <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
 
-        <my-helper.version>0.0.3</my-helper.version>
+        <spring-boot.version>2.7.15</spring-boot.version>
+        <my-helper.version>0.1.2</my-helper.version>
 
         <!--    冲突管理    -->
         <checker-qual.version>3.19.0</checker-qual.version>
+        <commons-compress.version>1.21</commons-compress.version>
         <error-prone-annotations.version>2.11.0</error-prone-annotations.version>
+        <guava.version>31.1-jre</guava.version>
         <swagger.version>2.2.2</swagger.version>
+        <snakeyaml.version>2.0</snakeyaml.version>
         <!--    冲突管理    -->
     </properties>
 
@@ -85,7 +92,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.7.8</version>
+                <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -101,12 +108,22 @@
             </dependency>
             <dependency>
                 <groupId>io.github.ye17186</groupId>
+                <artifactId>myhelper-datasource-spring-boot-starter</artifactId>
+                <version>${my-helper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.ye17186</groupId>
                 <artifactId>myhelper-generator-spring-boot-starter</artifactId>
                 <version>${my-helper.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.github.ye17186</groupId>
                 <artifactId>myhelper-knife4j-spring-boot-starter</artifactId>
+                <version>${my-helper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.ye17186</groupId>
+                <artifactId>myhelper-lock-spring-boot-starter</artifactId>
                 <version>${my-helper.version}</version>
             </dependency>
             <dependency>
@@ -134,6 +151,11 @@
                 <artifactId>myhelper-oss-spring-boot-starter</artifactId>
                 <version>${my-helper.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.github.ye17186</groupId>
+                <artifactId>myhelper-redis-spring-boot-starter</artifactId>
+                <version>${my-helper.version}</version>
+            </dependency>
 
             <!--     冲突管理       -->
             <dependency>
@@ -142,9 +164,19 @@
                 <version>${checker-qual.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-compress</artifactId>
+                <version>${commons-compress.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.google.errorprone</groupId>
                 <artifactId>error_prone_annotations</artifactId>
                 <version>${error-prone-annotations.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.swagger.core.v3</groupId>
@@ -156,6 +188,11 @@
                 <artifactId>swagger-annotations</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>${snakeyaml.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -164,6 +201,15 @@
             <id>ossrh-release</id>
             <build>
                 <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.8.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                        </configuration>
+                    </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>

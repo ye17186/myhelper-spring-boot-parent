@@ -35,7 +35,6 @@ public class DelayedEvent implements Delayed {
      *
      * @param source 源事件
      * @param delay  延时消费时间，单位毫秒
-     * @return
      */
     public static DelayedEvent create(Object source, long delay) {
 

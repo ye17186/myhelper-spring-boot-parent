@@ -1,6 +1,6 @@
 package io.github.ye17186.myhelper.knife4j.customizer;
 
-import io.github.ye17186.myhelper.knife4j.aotuconfigure.properties.MhKnife4jProperties;
+import io.github.ye17186.myhelper.knife4j.autoconfigure.properties.MhKnife4jProperties;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import lombok.AllArgsConstructor;

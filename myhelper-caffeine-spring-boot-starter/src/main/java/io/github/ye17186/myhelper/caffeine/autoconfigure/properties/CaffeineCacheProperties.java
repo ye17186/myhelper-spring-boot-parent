@@ -13,8 +13,13 @@ import java.util.Map;
  */
 @Setter
 @Getter
-@ConfigurationProperties(prefix = "spring.my-helper.caffeine")
+@ConfigurationProperties(prefix = "spring.my-helper.cache")
 public class CaffeineCacheProperties {
+
+    /**
+     * 缓存前置
+     */
+    private String prefix = "myhelper::";
 
     /**
      * 默认超时时间，单位：秒

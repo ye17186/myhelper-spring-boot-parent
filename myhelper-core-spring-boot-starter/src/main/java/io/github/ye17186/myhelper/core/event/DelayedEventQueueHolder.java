@@ -30,13 +30,13 @@ public class DelayedEventQueueHolder implements ApplicationRunner {
 
         Asserts.notNull(executor, "异步任务执行器异常");
         executor.submit(() -> {
-            log.info("【DelayedEventQueueHolder】启动延时事件存储队列，开始监听延时事件。");
+            log.info("【MyHelper】【DelayedEventQueueHolder】启动延时事件存储队列，开始监听延时事件。");
             while (true) {
                 try {
                     DelayedEvent event = QUEUE.take();
                     publisher.publishEvent(event.getSource());
                 } catch (InterruptedException e) {
-                    log.info("【DelayedEventQueueHolder】监听线程被打断，清空延时队列。");
+                    log.info("【MyHelper】【DelayedEventQueueHolder】监听线程被打断，清空延时队列。");
                     QUEUE.clear();
                     break;
                 }

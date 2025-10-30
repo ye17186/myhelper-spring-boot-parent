@@ -5,14 +5,15 @@
     <parent>
         <groupId>io.github.ye17186</groupId>
         <artifactId>myhelper-spring-boot-parent</artifactId>
-        <version>0.0.3</version>
+        <version>0.1.2</version>
     </parent>
 
     <artifactId>myhelper-mybatis-spring-boot-starter</artifactId>
+    <name>myhelper-mybatis-spring-boot-starter</name>
+    <description>Myhelper组件 - Mybatis模块</description>
 
     <properties>
-        <mybatis-plus.version>3.5.3</mybatis-plus.version>
-        <mybatis-plus-generator.version>3.5.3</mybatis-plus-generator.version>
+        <mybatis-plus.version>3.5.7</mybatis-plus.version>
     </properties>
 
     <dependencies>

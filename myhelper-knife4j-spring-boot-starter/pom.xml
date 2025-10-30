@@ -5,12 +5,15 @@
     <parent>
         <groupId>io.github.ye17186</groupId>
         <artifactId>myhelper-spring-boot-parent</artifactId>
-        <version>0.0.3</version>
+        <version>0.1.2</version>
     </parent>
     <artifactId>myhelper-knife4j-spring-boot-starter</artifactId>
+    <name>myhelper-knife4j-spring-boot-starter</name>
+    <description>Myhelper组件 - Knife4j模块</description>
+
     <properties>
         <springdoc-openapi-ui.version>1.6.9</springdoc-openapi-ui.version>
-        <knife4j.version>4.0.0</knife4j.version>
+        <knife4j.version>4.5.0</knife4j.version>
     </properties>
     <dependencies>
         <dependency>

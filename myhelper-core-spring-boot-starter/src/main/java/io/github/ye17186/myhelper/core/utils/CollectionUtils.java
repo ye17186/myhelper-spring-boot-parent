@@ -15,7 +15,6 @@ public class CollectionUtils extends org.springframework.util.CollectionUtils {
      * 集合不为空
      *
      * @param collection 集合
-     * @return
      */
     public static boolean isNotEmpty(@Nullable Collection<?> collection) {
 
@@ -26,10 +25,29 @@ public class CollectionUtils extends org.springframework.util.CollectionUtils {
      * map不为空
      *
      * @param map 集合
-     * @return
      */
     public static boolean isNotEmpty(@Nullable Map<?, ?> map) {
 
         return !isEmpty(map);
+    }
+
+    /**
+     * 数组为空
+     *
+     * @param arr 数组
+     */
+    public static <T> boolean isEmpty(@Nullable T[] arr) {
+
+        return arr == null || arr.length == 0;
+    }
+
+    /**
+     * 数组不为空
+     *
+     * @param arr 数组
+     */
+    public static <T> boolean isNotEmpty(@Nullable T[] arr) {
+
+        return !isEmpty(arr);
     }
 }

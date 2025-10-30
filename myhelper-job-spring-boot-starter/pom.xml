@@ -5,15 +5,16 @@
     <parent>
         <artifactId>myhelper-spring-boot-parent</artifactId>
         <groupId>io.github.ye17186</groupId>
-        <version>0.0.3</version>
+        <version>0.1.2</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>myhelper-job-spring-boot-starter</artifactId>
-    <description>基于XXL-JOB的定时任务</description>
+    <name>myhelper-job-spring-boot-starter</name>
+    <description>Myhelper组件 - Job模块</description>
 
     <properties>
-        <xxl-job.version>2.4.0</xxl-job.version>
+        <xxl-job.version>2.5.0</xxl-job.version>
     </properties>
 
     <dependencies>

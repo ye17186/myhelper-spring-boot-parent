@@ -4,6 +4,8 @@ import com.google.common.base.Charsets;
 import io.github.ye17186.myhelper.core.utils.JsonUtils;
 import io.github.ye17186.myhelper.core.web.response.ApiResp;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,12 +19,12 @@ import java.io.IOException;
 @Slf4j
 public abstract class MhInterceptor implements HandlerInterceptor {
 
-    protected <T> void writeResp(HttpServletRequest request, HttpServletResponse response, ApiResp<T> resp) throws IOException {
+    protected void writeResp(HttpServletRequest request, HttpServletResponse response, ApiResp<?> resp) throws IOException {
 
-        String origin = request.getHeader("Origin");
-        response.setHeader("Access-Control-Allow-Origin", origin);
+        String origin = request.getHeader(HttpHeaders.ORIGIN);
+        response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, origin);
         response.setCharacterEncoding(Charsets.UTF_8.name());
-        response.setContentType("application/json; charset=utf-8");
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.getWriter().write(JsonUtils.obj2Json(resp));
     }
 }

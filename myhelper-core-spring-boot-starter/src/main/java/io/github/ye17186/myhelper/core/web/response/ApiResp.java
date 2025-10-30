@@ -1,5 +1,6 @@
 package io.github.ye17186.myhelper.core.web.response;
 
+import io.github.ye17186.myhelper.core.web.context.RequestContext;
 import io.github.ye17186.myhelper.core.web.error.IErrorEnum;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +16,8 @@ import java.io.Serializable;
 public class ApiResp<T> implements Serializable {
 
     private static final long serialVersionUID = -4622975208445843473L;
+
+    private String traceId;
 
     private int code;
 
@@ -33,6 +36,7 @@ public class ApiResp<T> implements Serializable {
     public static <T> ApiResp<T> suc(T data) {
 
         ApiResp<T> resp = new ApiResp<>();
+        resp.setTraceId(RequestContext.requestId());
         resp.setCode(SUCCESS);
         resp.setData(data);
         return resp;
@@ -54,6 +58,7 @@ public class ApiResp<T> implements Serializable {
     public static <T> ApiResp<T> fail(int code, String msg) {
 
         ApiResp<T> resp = new ApiResp<>();
+        resp.setTraceId(RequestContext.requestId());
         resp.setCode(code);
         resp.setMsg(msg);
         return resp;

@@ -19,10 +19,15 @@ public class MhWebAsyncProperties {
     /**
      * 核心线程数
      */
-    private int coreSize = 10;
+    private int coreSize = 50;
 
     /**
      * 最大线程数
      */
-    private int maxSize = 50;
+    private int maxSize = 500;
+
+    /**
+     * 保持存活的时间，单位：秒
+     */
+    private int keepAliveSeconds = 60;
 }

@@ -5,6 +5,7 @@ import cn.dev33.satoken.interceptor.SaInterceptor;
 import io.github.ye17186.myhelper.token.MhTokenService;
 import io.github.ye17186.myhelper.token.customizer.SaTokenCustomize;
 import io.github.ye17186.myhelper.token.properties.TokenProperties;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author ye17186
  * @since 2023-03-03
  */
+@Slf4j
 @AutoConfiguration
 @EnableConfigurationProperties(TokenProperties.class)
 public class MhTokenAutoConfiguration {
@@ -34,6 +36,7 @@ public class MhTokenAutoConfiguration {
     @Bean
     public MhTokenService mhTokenService() {
 
+        log.info("【MyHelper】【Token】初始化成功.");
         return new MhTokenService();
     }
 

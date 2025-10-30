@@ -1,13 +1,14 @@
 package io.github.ye17186.myhelper.web.interceptor.login;
 
-import io.github.ye17186.myhelper.core.utils.SpringUtils;
+import io.github.ye17186.myhelper.core.utils.JsonUtils;
+import io.github.ye17186.myhelper.core.utils.StringUtils;
+import io.github.ye17186.myhelper.core.web.context.RequestContext;
 import io.github.ye17186.myhelper.core.web.context.user.MhContextUser;
 import io.github.ye17186.myhelper.core.web.context.user.MhUserContext;
 import io.github.ye17186.myhelper.core.web.error.ErrorCode;
 import io.github.ye17186.myhelper.core.web.response.ApiResp;
 import io.github.ye17186.myhelper.token.MhTokenService;
 import io.github.ye17186.myhelper.token.model.LoginKey;
-import io.github.ye17186.myhelper.web.context.MhUserCacheService;
 import io.github.ye17186.myhelper.web.interceptor.MhInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
@@ -24,20 +25,14 @@ import java.io.IOException;
 @Slf4j
 public class MhLoginInterceptor extends MhInterceptor {
 
-    private MhUserCacheService cacheService = null;
-    private final String userRef;
-    /**
-     * 登录类型（账号体系）
-     */
-    private final String loginType;
+    private final Class<? extends MhContextUser> userType;
 
     private final MhTokenService mhTokenService;
 
-    public MhLoginInterceptor(MhTokenService mhTokenService, String loginType, String userRef) {
+    public MhLoginInterceptor(MhTokenService mhTokenService, Class<? extends MhContextUser> userType) {
 
         this.mhTokenService = mhTokenService;
-        this.loginType = loginType;
-        this.userRef = userRef;
+        this.userType = userType;
     }
 
     @Override
@@ -63,32 +58,39 @@ public class MhLoginInterceptor extends MhInterceptor {
             return true;
         }
 
+
         boolean isLogin = mhTokenService.isLogin();
+        log.trace("[MyHelper - Interceptor] 登录拦截器校验。当前用户登录信息是否有效: {}", isLogin);
 
         if (isLogin) {
             LoginKey key = mhTokenService.getLoginKey();
-            if (key != null && loginType.equals(key.getLoginType())) {
-                MhContextUser user = getCacheService().getAndCache(key);
-                MhUserContext.set(user);
+            if (key != null) {
+                try {
+                    String userJson = mhTokenService.getUserJson();
+                    if (StringUtils.isNotEmpty(userJson)) {
+                        MhUserContext.set(JsonUtils.json2Obj(userJson, userType));
+                    } else {
+                        isLogin = false;
+                        mhTokenService.logout();
+                    }
+                } catch (Exception e) {
+                    isLogin = false;
+                }
             } else {
                 isLogin = false;
             }
         }
 
-
         if (!isLogin) {
+            log.info("[业务异常] traceId = {}, code = {}, msg = {}, uri = {}",
+                    RequestContext.requestId(),
+                    ErrorCode.NO_LOGIN.getCode(),
+                    ErrorCode.NO_LOGIN.getMsg(),
+                    request.getRequestURI());
             ApiResp<String> resp = ApiResp.fail(ErrorCode.NO_LOGIN);
             writeResp(request, response, resp);
         }
 
         return isLogin;
-    }
-
-    private MhUserCacheService getCacheService() {
-
-        if (cacheService == null) {
-            cacheService = SpringUtils.getBean(userRef, MhUserCacheService.class);
-        }
-        return cacheService;
     }
 }

@@ -35,4 +35,9 @@ public class MhOssProperties {
      * 是否启用pathStyle
      */
     private boolean enabledPathStyle = true;
+
+    /**
+     * 代理endpoint，一般用于外网
+     */
+    protected String proxyEndpoint;
 }

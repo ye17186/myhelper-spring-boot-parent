@@ -2,6 +2,8 @@ package io.github.ye17186.myhelper.token;
 
 import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
+import io.github.ye17186.myhelper.core.utils.JsonUtils;
+import io.github.ye17186.myhelper.token.enums.SessionKeyEnum;
 import io.github.ye17186.myhelper.token.model.LoginKey;
 import io.github.ye17186.myhelper.token.model.TokenInfo;
 
@@ -21,6 +23,13 @@ public class MhTokenService {
     public TokenInfo login(LoginKey key) {
 
         StpUtil.login(key.format());
+        return toToken(StpUtil.getTokenInfo(), key);
+    }
+
+    public TokenInfo login(LoginKey key, Object userInfo) {
+
+        StpUtil.login(key.format());
+        StpUtil.getSession().set(SessionKeyEnum.USER_INFO.getCode(), JsonUtils.obj2Json(userInfo));
         return toToken(StpUtil.getTokenInfo(), key);
     }
 
@@ -50,6 +59,11 @@ public class MhTokenService {
         return LoginKey.decode(StpUtil.getLoginIdAsString());
     }
 
+    public String getUserJson() {
+
+        return  (String) StpUtil.getSession().get(SessionKeyEnum.USER_INFO.getCode());
+    }
+
     /**
      * 当前状态是否已登录
      */
@@ -70,19 +84,27 @@ public class MhTokenService {
 
     /**
      * 获取当前用户的角色码集合
-     *
-     * @return
      */
     public List<String> roles() {
 
         return StpUtil.getRoleList();
     }
 
+    /**
+     * 判断当前用户是否拥有指定权限
+     *
+     * @param permission 权限码
+     */
     public boolean hasPermission(String permission) {
 
         return StpUtil.hasPermission(permission);
     }
 
+    /**
+     * 判断当前用户是否拥有指定角色
+     *
+     * @param role 角色码
+     */
     public boolean hasRole(String role) {
 
         return StpUtil.hasRole(role);

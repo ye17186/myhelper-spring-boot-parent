@@ -17,7 +17,7 @@ import java.util.Optional;
 @Getter
 public abstract class MhUserContext implements Serializable {
 
-    private static final TransmittableThreadLocal<MhContextUser> HOLDER = new TransmittableThreadLocal<>();
+    private static final  TransmittableThreadLocal<MhContextUser> HOLDER = new TransmittableThreadLocal<>();
 
     /**
      * 设置当前登录用户的信息
@@ -42,5 +42,10 @@ public abstract class MhUserContext implements Serializable {
     public static String mhToken() {
 
         return Optional.ofNullable(get()).map(MhContextUser::getMhToken).orElse("");
+    }
+
+    public static String mhLoginKey() {
+
+        return Optional.ofNullable(get()).map(MhContextUser::getLoginKey).orElse("");
     }
 }

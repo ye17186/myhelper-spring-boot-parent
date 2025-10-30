@@ -1,5 +1,6 @@
 package io.github.ye17186.myhelper.web.annotation;
 
+import io.github.ye17186.myhelper.web.aspect.log.ActionType;
 import io.github.ye17186.myhelper.web.aspect.log.LogTarget;
 
 import java.lang.annotation.*;
@@ -17,6 +18,8 @@ public @interface SysLogPoint {
      * 操作名
      */
     String action() default "unknown";
+
+    ActionType type() default ActionType.QUERY;
 
     /**
      * 是否忽略输入

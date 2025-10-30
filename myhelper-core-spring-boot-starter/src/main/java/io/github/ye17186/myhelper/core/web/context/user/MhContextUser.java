@@ -18,7 +18,12 @@ public abstract class MhContextUser implements Serializable {
     /**
      * 登录类型（账号体系）
      */
-    private String loginType;
+    private String loginType = "default";
+
+    /**
+     * 登录唯一ID（账号体系下唯一）
+     */
+    private String loginId;
 
     /**
      * 用户Token
@@ -29,4 +34,12 @@ public abstract class MhContextUser implements Serializable {
      * Token过期时间
      */
     private long mhExpiredAt;
+
+    /**
+     * 登录唯一标识（全局唯一）
+     */
+    public String getLoginKey() {
+
+        return this.loginType + ":" + this.loginId;
+    }
 }

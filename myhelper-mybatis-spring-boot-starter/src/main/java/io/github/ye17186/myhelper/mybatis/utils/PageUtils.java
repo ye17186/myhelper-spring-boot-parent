@@ -45,7 +45,7 @@ public class PageUtils {
         response.setPageSize(page.getSize());
         response.setTotalPage(page.getPages());
         response.setTotalCount(page.getTotal());
-        response.setData(page.getRecords());
+        response.setItems(page.getRecords());
         return response;
     }
 
@@ -56,7 +56,7 @@ public class PageUtils {
         response.setPageSize(page.getSize());
         response.setTotalPage(page.getPages());
         response.setTotalCount(page.getTotal());
-        response.setData(page.getRecords().stream().map(function).collect(Collectors.toList()));
+        response.setItems(page.getRecords().stream().map(function).collect(Collectors.toList()));
         return response;
     }
 
@@ -67,7 +67,7 @@ public class PageUtils {
         response.setPageSize(page.getSize());
         response.setTotalPage(0);
         response.setTotalCount(0);
-        response.setData(Lists.newArrayList());
+        response.setItems(Lists.newArrayList());
         return response;
     }
 }

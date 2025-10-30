@@ -39,5 +39,5 @@ public class PageResponse<T> implements Serializable {
     /**
      * 数据集合
      */
-    private List<T> data;
+    private List<T> items;
 }

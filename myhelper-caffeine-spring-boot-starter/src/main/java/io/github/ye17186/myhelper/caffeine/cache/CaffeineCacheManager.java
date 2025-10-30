@@ -26,7 +26,7 @@ public class CaffeineCacheManager extends org.springframework.cache.caffeine.Caf
     @NonNull
     protected Cache<Object, Object> createNativeCaffeineCache(@NonNull String name) {
 
-        Long timeout = properties.getCacheSpecs().get(name);
+        Long timeout = properties.getCacheSpecs().get(prefixName(name));
         if (timeout == null) {
             timeout = properties.getTimeout();
         }
@@ -34,5 +34,10 @@ public class CaffeineCacheManager extends org.springframework.cache.caffeine.Caf
         final Caffeine<Object, Object> caffeine = Caffeine.newBuilder()
                 .expireAfterWrite(timeout, TimeUnit.SECONDS);
         return caffeine.build();
+    }
+
+    private String prefixName(String name) {
+
+        return properties.getPrefix() + name;
     }
 }
